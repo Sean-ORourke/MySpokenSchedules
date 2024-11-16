@@ -1,35 +1,78 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
-/// Displays detailed information about a Task.
-class TasksDetailsView extends StatelessWidget {
+class TasksDetailsView extends StatefulWidget {
   const TasksDetailsView({super.key});
 
   static const routeName = '/task';
 
   @override
+  _TasksDetailsViewState createState() => _TasksDetailsViewState();
+}
+
+class _TasksDetailsViewState extends State<TasksDetailsView> {
+  TimeOfDay? _selectedTime;
+
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: _selectedTime ?? TimeOfDay.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Colors.orange, // Header background and selected time
+              onPrimary: Colors.white, // Header text color
+              onSurface: Colors.black, // Text color for time options
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.orange, // Button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+    if (picked != null && picked != _selectedTime) {
+      setState(() {
+        _selectedTime = picked;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Task Details'),
-        ),
-        body: const Center(
-            child: Column(
+      appBar: AppBar(
+        title: const Text('Task Details'),
+      ),
+      body: Center(
+        child: Column(
           children: [
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Label',
               ),
             ),
-            // put time picker here!!
-            TextField(
+            ElevatedButton(
+              onPressed: () => _selectTime(context),
+              child: Text(
+                _selectedTime == null
+                    ? 'Select Time'
+                    : 'Selected Time: ${_selectedTime!.format(context)}',
+              ),
+            ),
+            const TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Message',
               ),
             ),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }
