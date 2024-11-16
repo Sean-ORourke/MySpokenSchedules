@@ -19,7 +19,7 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(
+            colorScheme: const ColorScheme.light(
               primary: Colors.orange, // Header background and selected time
               onPrimary: Colors.white, // Header text color
               onSurface: Colors.black, // Text color for time options
