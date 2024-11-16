@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'sample_feature/schedule_details_view.dart';
 import 'sample_feature/schedule_list_view.dart';
+import 'sample_feature/task_details_view.dart';
+import 'sample_feature/task_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
@@ -71,6 +73,10 @@ class MyApp extends StatelessWidget {
                     return SettingsView(controller: settingsController);
                   case SchedulesDetailsView.routeName:
                     return const SchedulesDetailsView();
+                  case TasksDetailsView.routeName:
+                    return const TasksDetailsView();
+                  case TaskListView.routeName:
+                    return const TaskListView();
                   case ScheduleListView.routeName:
                   default:
                     return const ScheduleListView();

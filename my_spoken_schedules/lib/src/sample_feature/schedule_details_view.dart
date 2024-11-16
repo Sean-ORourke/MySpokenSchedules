@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_spoken_schedules/src/sample_feature/task_list_view.dart';
 
 /// Displays detailed information about a Schedule.
 class SchedulesDetailsView extends StatelessWidget {
@@ -13,7 +14,7 @@ class SchedulesDetailsView extends StatelessWidget {
         title: const Text('Schedule Details'),
       ),
       body: const Center(
-        child: Text('Tasks Go Here'),
+        child: TaskListView(),
       ),
     );
   }

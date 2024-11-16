@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 
 import '../settings/settings_view.dart';
-import 'schedule.dart';
-import 'schedule_details_view.dart';
+import 'task.dart';
+import 'task_details_view.dart';
 
-/// Displays a list of Schedules.
-class ScheduleListView extends StatelessWidget {
-  const ScheduleListView({
+/// Displays a list of Tasks.
+class TaskListView extends StatelessWidget {
+  const TaskListView({
     super.key,
-    this.items = const [Schedule(1), Schedule(2), Schedule(3)],
+    this.items = const [Task(1), Task(2), Task(3)],
   });
 
-  static const routeName = '/';
+  static const routeName = '/taskList';
 
-  final List<Schedule> items;
+  final List<Task> items;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Schedules'),
+        title: const Text('Tasks'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -31,7 +31,6 @@ class ScheduleListView extends StatelessWidget {
             },
           ),
         ],
-        
       ),
 
       // To work with lists that may contain a large number of items, it’s best
@@ -44,13 +43,13 @@ class ScheduleListView extends StatelessWidget {
         // Providing a restorationId allows the ListView to restore the
         // scroll position when a user leaves and returns to the app after it
         // has been killed while running in the background.
-        restorationId: 'ScheduleListView',
+        restorationId: 'TaskListView',
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           final item = items[index];
 
           return ListTile(
-              title: Text('Schedule ${item.id}'),
+              title: Text('Task ${item.id}'),
               leading: const CircleAvatar(
                 // Display the Flutter Logo image asset.
                 foregroundImage: AssetImage('assets/images/flutter_logo.png'),
@@ -61,7 +60,7 @@ class ScheduleListView extends StatelessWidget {
                 // background, the navigation stack is restored.
                 Navigator.restorablePushNamed(
                   context,
-                  SchedulesDetailsView.routeName,
+                  TasksDetailsView.routeName,
                 );
               });
         },
