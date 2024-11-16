@@ -1,0 +1,16 @@
+{
+    "alarms": [
+      {
+        "id": "1",
+        "time": "08:00 AM",
+        "message": "Take medication",
+        "isActive": true
+      },
+      {
+        "id": "2",
+        "time": "05:00 PM",
+        "message": "Weekly review",
+        "isActive": false
+      }
+    ]
+  }
