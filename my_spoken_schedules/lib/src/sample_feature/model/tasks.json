@@ -1,1 +1,18 @@
-
+{
+    "alarms": [
+      {
+        "id": "1",
+        "label": "Wake Up",
+        "time": "08:00 AM",
+        "message": "",
+        "isActive": true
+      },
+      {
+        "id": "2",
+        "label": "Take Meds",
+        "time": "05:00 PM",
+        "message": "Take your meds",
+        "isActive": false
+      }
+    ]
+  }
