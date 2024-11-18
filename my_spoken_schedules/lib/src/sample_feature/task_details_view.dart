@@ -16,23 +16,23 @@ class _TasksDetailsViewState extends State<TasksDetailsView> {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: _selectedTime ?? TimeOfDay.now(),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(
-              primary: Colors.orange, // Header background and selected time
-              onPrimary: Colors.white, // Header text color
-              onSurface: Colors.black, // Text color for time options
-            ),
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.orange, // Button text color
-              ),
-            ),
-          ),
-          child: child!,
-        );
-      },
+      // builder: (BuildContext context, Widget? child) {
+      //   return Theme(
+      //     data: Theme.of(context).copyWith(
+      //       colorScheme: const ColorScheme.light(
+      //         primary: Colors.orange, // Header background and selected time
+      //         onPrimary: Colors.white, // Header text color
+      //         onSurface: Colors.black, // Text color for time options
+      //       ),
+      //       textButtonTheme: TextButtonThemeData(
+      //         style: TextButton.styleFrom(
+      //           foregroundColor: Colors.orange, // Button text color
+      //         ),
+      //       ),
+      //     ),
+      //     child: child!,
+      //   );
+      // },
     );
     if (picked != null && picked != _selectedTime) {
       setState(() {
