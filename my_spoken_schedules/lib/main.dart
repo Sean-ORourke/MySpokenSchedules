@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-// import 'package:mvvm_example_with_provider/view/list_pictures_view.dart';
-// import 'package:mvvm_example_with_provider/view_model/list_pictures_view_model.dart';
+import 'package:my_spoken_schedules/view/list_tasks_view.dart';
+import 'package:my_spoken_schedules/view_model/list_tasks_view_model.dart';
 
 import 'package:provider/provider.dart';
 
@@ -14,17 +14,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-        debugShowCheckedModeBanner: true,
-        title: 'Random Photo Gallery',
-        theme: const CupertinoThemeData(),
-        home: ChangeNotifierProvider(
-          create: (BuildContext context) {},
-          child: const Text(
-            "hello world",
-            style: TextStyle(
-              color: CupertinoColors.activeBlue,
-            ),
-          ),
-        ));
+      debugShowCheckedModeBanner: true,
+      title: 'MySpokenSchedules!',
+      theme: CupertinoThemeData(),
+      home: ChangeNotifierProvider(
+        create: (context) =>
+            ListTasksViewModel(), // Returns an instance of ListTasksViewModel
+        child: TaskListView(),
+      ),
+    );
   }
 }
+
+// TaskListView() {}
+
+// ListTasksViewModel() {
+//   return Text("hello");
+// }
