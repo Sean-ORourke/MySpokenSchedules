@@ -1,27 +1,29 @@
-// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
 
-class SingleTaskWidget extends StatefulWidget {
-  const SingleTaskWidget({
-    Key? key,
-    required this.tasksViewModel,
-  }) : super(key: key);
+class SingleTaskWidget extends StatelessWidget {
+  final TasksViewModel taskViewModel;
 
-  final TasksViewModel tasksViewModel;
+  const SingleTaskWidget({Key? key, required this.taskViewModel})
+      : super(key: key);
 
-  @override
-  State<SingleTaskWidget> createState() => _SingleTaskWidgetState();
-}
-
-class _SingleTaskWidgetState extends State<SingleTaskWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 4, 0, 4),
-      child: Container(width: 200, color: Colors.grey, child: Text("Bruh")
-          // child: CachedNetworkImage(imageUrl: "${widget.picturesViewModel.picsumModel!.downloadUrl}", fit: BoxFit.cover,)
-          ),
+    return Card(
+      margin: EdgeInsets.all(8.0),
+      child: ListTile(
+        title: Text(
+          taskViewModel.taskModel!.label ??
+              'No Label', // Provide a default value
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          taskViewModel.taskModel!.message ??
+              'No Message', // Provide a default value
+          style: TextStyle(color: Colors.grey),
+        ),
+        trailing: Icon(Icons.check_circle_outline),
+      ),
     );
   }
 }

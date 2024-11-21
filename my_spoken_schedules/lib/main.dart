@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/view/list_tasks_view.dart';
 import 'package:my_spoken_schedules/view_model/list_tasks_view_model.dart';
 
@@ -15,6 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       debugShowCheckedModeBanner: true,
+      localizationsDelegates: [
+        DefaultMaterialLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+      ],
       title: 'MySpokenSchedules!',
       theme: CupertinoThemeData(),
       home: ChangeNotifierProvider(
