@@ -22,7 +22,13 @@ class SingleTaskWidget extends StatelessWidget {
               'No Message', // Provide a default value
           style: TextStyle(color: Colors.grey),
         ),
-        trailing: Icon(Icons.check_circle_outline),
+        trailing: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.mode_edit),
+            Icon(Icons.delete_forever),
+          ],
+        ),
       ),
     );
   }
