@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
 import 'package:my_spoken_schedules/view/task_detail_view.dart';
+import 'package:provider/provider.dart';
+import 'package:my_spoken_schedules/view_model/list_tasks_view_model.dart';
 
 class SingleTaskWidget extends StatelessWidget {
   final TasksViewModel taskViewModel;
@@ -10,6 +12,7 @@ class SingleTaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final vm = Provider.of<ListTasksViewModel>(context);
     return Card(
       margin: EdgeInsets.all(8.0),
       child: ListTile(
@@ -43,6 +46,7 @@ class SingleTaskWidget extends StatelessWidget {
               icon: Icon(Icons.delete_forever),
               onPressed: () {
                 // Add logic to delete task
+                vm.removeTasks(taskViewModel.taskModel!.id ?? 'No id');
               },
             ),
           ],

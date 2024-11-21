@@ -22,14 +22,17 @@ class ListTasksViewModel extends ChangeNotifier {
 
     final List<dynamic> json = [
       {
+        "id": "1",
         "label": "Task 1 YEAHHHHHHHHHHHHHHHHHHHHH",
         "message": "Message 1 WOOOOOO"
       },
       {
+        "id": "2",
         "label": "Task 2 YAYAYAYAYAYAYAYAYYAYAY",
         "message": "run, bike, lift weights"
       },
       {
+        "id": "3",
         "label": "Task 3 take Meds",
         "message": "ibuprofein, excedrin migrane, testosterone, multivitamin",
       }
@@ -37,13 +40,26 @@ class ListTasksViewModel extends ChangeNotifier {
 
     // Parse JSON into TaskModel objects
     final taskList = json
-        .map((e) => task_model(label: e["label"], message: e["message"]))
+        .map((task) => task_model(
+            id: task["id"], label: task["label"], message: task["message"]))
         .toList();
 
     // Map TaskModel to TasksViewModel
     this.tasks = taskList.map((task) => TasksViewModel(task)).toList();
 
     // all I have to do is fill this.tasks with a List<TasksViewModel>
+
+    notifyListeners();
+  }
+
+  removeTasks(String id) {
+    for (final item in tasks) {
+      TasksViewModel curr = item;
+
+      if (curr.taskModel!.id == id) {
+        tasks.remove(curr);
+      }
+    }
 
     notifyListeners();
   }

@@ -21,27 +21,26 @@ class _ListTasksViewState extends State<TaskListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Task List'),
-      ),
-      body: Consumer<ListTasksViewModel>(
-        builder: (context, listTasksViewModel, child) {
-          // Show a loading indicator if tasks are empty
-          if (listTasksViewModel.tasks.isEmpty) {
-            return Center(child: CircularProgressIndicator());
-          }
+    final vm = Provider.of<ListTasksViewModel>(context);
 
-          // Display the list of tasks
-          return ListView.builder(
-            itemCount: listTasksViewModel.tasks.length,
-            itemBuilder: (context, index) {
-              final taskViewModel = listTasksViewModel.tasks[index];
-              return SingleTaskWidget(taskViewModel: taskViewModel);
-            },
-          );
-        },
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Task List'),
+        ),
+        // body: Consumer<ListTasksViewModel>( //avoid?
+        //   builder: (context, listTasksViewModel, child) {
+        //     // Show a loading indicator if tasks are empty
+        //     if (listTasksViewModel.tasks.isEmpty) {
+        //       return Center(child: CircularProgressIndicator());
+        //     }
+
+        //     // Display the list of tasks
+        body: ListView.builder(
+          itemCount: vm.tasks.length,
+          itemBuilder: (context, index) {
+            final taskViewModel = vm.tasks[index];
+            return SingleTaskWidget(taskViewModel: taskViewModel);
+          },
+        ));
   }
 }

@@ -6,12 +6,13 @@ class EditTaskPage extends StatelessWidget {
   EditTaskPage({required this.taskLabel});
   @override
   Widget build(BuildContext context) {
-    final TextEditingController labelController = TextEditingController();
+    final TextEditingController labelController =
+        TextEditingController(text: taskLabel);
     final TextEditingController messageController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Task: $taskLabel'),
+        title: Text(taskLabel),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
