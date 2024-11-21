@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
+import 'package:my_spoken_schedules/view/task_detail_view.dart';
 
 class SingleTaskWidget extends StatelessWidget {
   final TasksViewModel taskViewModel;
@@ -22,11 +23,28 @@ class SingleTaskWidget extends StatelessWidget {
               'No Message', // Provide a default value
           style: TextStyle(color: Colors.grey),
         ),
-        trailing: const Row(
+        trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.mode_edit),
-            Icon(Icons.delete_forever),
+            IconButton(
+              icon: Icon(Icons.mode_edit),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EditTaskPage(
+                          taskLabel:
+                              taskViewModel.taskModel!.label ?? 'No Label')),
+                );
+              },
+            ),
+            SizedBox(width: 8.0), // Space between buttons
+            IconButton(
+              icon: Icon(Icons.delete_forever),
+              onPressed: () {
+                // Add logic to delete task
+              },
+            ),
           ],
         ),
       ),
