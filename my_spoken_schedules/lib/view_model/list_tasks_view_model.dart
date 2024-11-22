@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 class ListTasksViewModel extends ChangeNotifier {
   List<TasksViewModel> tasks = <TasksViewModel>[];
 
+  int latestID = 4;
+
   fetchTasks() {
     // final json = task_model as List<dynamic>;
 
@@ -62,6 +64,26 @@ class ListTasksViewModel extends ChangeNotifier {
     // }
 
     tasks.removeWhere((task) => task.taskModel?.id == id);
+
+    notifyListeners();
+  }
+
+
+  addTask() {
+    final newJson =
+      {
+        "id": latestID.toString(),
+        "label": "New Task",
+        "message": "New Message"
+      };
+
+    final newTask = task_model(id: newJson["id"], label: newJson["label"], message: newJson["message"]); //newJson.map((task) => task_model(id: task["id"], label: task["label"], message: task["message"]));
+
+    final newTaskViewModel = TasksViewModel(newTask);
+
+    tasks.add(newTaskViewModel);
+
+    latestID++;
 
     notifyListeners();
   }
