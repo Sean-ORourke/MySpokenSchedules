@@ -53,13 +53,15 @@ class ListTasksViewModel extends ChangeNotifier {
   }
 
   removeTasks(String id) {
-    for (final item in tasks) {
-      TasksViewModel curr = item;
+    // for (final item in tasks) {
+    //   TasksViewModel curr = item;
 
-      if (curr.taskModel!.id == id) {
-        tasks.remove(curr);
-      }
-    }
+    //   if (curr.taskModel!.id == id) {
+    //     tasks.remove(curr);
+    //   }
+    // }
+
+    tasks.removeWhere((task) => task.taskModel?.id == id);
 
     notifyListeners();
   }
