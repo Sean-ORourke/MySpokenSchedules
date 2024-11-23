@@ -37,7 +37,7 @@ class SingleTaskWidget extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => EditTaskPage(
                           taskLabel:
-                              taskViewModel.taskModel!.label ?? 'No Label')),
+                              taskViewModel.taskModel!.label ?? 'No Label', taskMessage: taskViewModel.taskModel!.message ?? 'No Message',)),
                 );
               },
             ),

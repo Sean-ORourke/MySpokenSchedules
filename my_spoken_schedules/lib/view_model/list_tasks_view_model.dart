@@ -25,18 +25,23 @@ class ListTasksViewModel extends ChangeNotifier {
     final List<dynamic> json = [
       {
         "id": "1",
-        "label": "Task 1 YEAHHHHHHHHHHHHHHHHHHHHH",
-        "message": "Message 1 WOOOOOO"
+        "label": "Wake Up",
+        "message": "Class is in 1 hour."
       },
       {
         "id": "2",
-        "label": "Task 2 YAYAYAYAYAYAYAYAYYAYAY",
-        "message": "run, bike, lift weights"
+        "label": "Workout",
+        "message": "Workout Plan: Run, bike, lift weights."
       },
       {
         "id": "3",
-        "label": "Task 3 take Meds",
+        "label": "take Meds",
         "message": "ibuprofein, excedrin migrane, testosterone, multivitamin",
+      },
+      {
+        "id": "3",
+        "label": "time for skincare routine",
+        "message": "mondays are sugar scrub, hydrophillic acid, and face lotion",
       }
     ];
 
