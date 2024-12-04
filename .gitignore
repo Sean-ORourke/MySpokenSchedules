@@ -31,3 +31,4 @@ doc/api/
 **/generated_plugin_registrant.h
 **/generated_plugins.cmake
 **/GeneratedPluginRegistrant.swift
+my_spoken_schedules/macos/Flutter/GeneratedPluginRegistrant.swift

@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class ListTasksViewModel extends ChangeNotifier {
   List<TasksViewModel> tasks = <TasksViewModel>[];
 
-  int latestID = 4;
+  int latestID = 5;
 
   fetchTasks() {
     // final json = task_model as List<dynamic>;
