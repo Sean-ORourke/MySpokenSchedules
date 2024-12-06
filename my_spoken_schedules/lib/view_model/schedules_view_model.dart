@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/model/task_model.dart';
-import 'package:provider/provider.dart';
 
-class SchedulesViewModel extends ChangeNotifier {
+
+class ScheduleViewModel extends ChangeNotifier {
   final ScheduleModel? scheduleModel;
 
-  SchedulesViewModel(this.scheduleModel);
+  ScheduleViewModel(this.scheduleModel);
 
   int latestID = 3;
 

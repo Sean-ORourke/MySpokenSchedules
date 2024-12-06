@@ -3,7 +3,7 @@ import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
 
 class ListSchedulesViewModel extends ChangeNotifier {
-  List<SchedulesViewModel> schedules = <SchedulesViewModel>[];
+  List<ScheduleViewModel> schedules = <ScheduleViewModel>[];
 
   fetchSchedules() {
     // Simulate fetching schedules from a data source
@@ -79,7 +79,7 @@ class ListSchedulesViewModel extends ChangeNotifier {
         json.map((e) => ScheduleModel.fromJson(e)).toList();
 
     this.schedules =
-        scheduleList.map((schedule) => SchedulesViewModel(schedule)).toList();
+        scheduleList.map((schedule) => ScheduleViewModel(schedule)).toList();
     notifyListeners();
   }
 
@@ -92,7 +92,7 @@ class ListSchedulesViewModel extends ChangeNotifier {
       isActive: true,
     );
 
-    schedules.add(SchedulesViewModel(newSchedule));
+    schedules.add(ScheduleViewModel(newSchedule));
     notifyListeners();
   }
 }

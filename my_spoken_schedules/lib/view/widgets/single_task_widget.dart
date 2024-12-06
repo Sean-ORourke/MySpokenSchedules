@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 class SingleTaskWidget extends StatelessWidget {
   final TaskViewModel taskViewModel;
-  final SchedulesViewModel scheduleViewModel; // Add scheduleViewModel
+  final ScheduleViewModel scheduleViewModel; // Add scheduleViewModel
 
   const SingleTaskWidget({
     Key? key,
@@ -17,7 +17,7 @@ class SingleTaskWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheduleViewModel =
-        Provider.of<SchedulesViewModel>(context, listen: true);
+        Provider.of<ScheduleViewModel>(context, listen: true);
     return Card(
       margin: EdgeInsets.all(8.0),
       child: ListTile(
@@ -41,9 +41,10 @@ class SingleTaskWidget extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => TaskDetailView(
-                      taskLabel: taskViewModel.taskModel!.label ?? 'No Label',
-                      taskMessage:
-                          taskViewModel.taskModel!.message ?? 'No Message',
+                      // taskLabel: taskViewModel.taskModel!.label ?? 'No Label',
+                      // taskMessage:
+                      //     taskViewModel.taskModel!.message ?? 'No Message',
+                          taskViewModel: taskViewModel,
                     ),
                   ),
                 );

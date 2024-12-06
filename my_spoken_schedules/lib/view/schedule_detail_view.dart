@@ -5,7 +5,7 @@ import 'package:my_spoken_schedules/view_model/task_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ScheduleDetailView extends StatelessWidget {
-  final SchedulesViewModel scheduleViewModel;
+  final ScheduleViewModel scheduleViewModel;
 
   const ScheduleDetailView({Key? key, required this.scheduleViewModel})
       : super(key: key);
@@ -13,7 +13,7 @@ class ScheduleDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheduleViewModel =
-        Provider.of<SchedulesViewModel>(context, listen: true);
+        Provider.of<ScheduleViewModel>(context, listen: true);
     int taskCount = scheduleViewModel.scheduleModel?.tasks?.length ?? 0;
     taskCount++;
     return Scaffold(
