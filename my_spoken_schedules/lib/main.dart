@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_spoken_schedules/notification/notification.dart';
 import 'package:provider/provider.dart';
 import 'package:my_spoken_schedules/view_model/list_schedules_view_model.dart';
 import 'package:my_spoken_schedules/view/list_schedules_view.dart';
@@ -8,7 +9,12 @@ import 'package:my_spoken_schedules/view_model/list_schedules_view_model.dart';
 import 'package:my_spoken_schedules/view_model/list_tasks_view_model.dart';
 import 'package:my_spoken_schedules/view/list_schedules_view.dart';
 
-void main() {
+import 'package:timezone/data/latest.dart' as tz;
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService.init();
+  tz.initializeTimeZones();
   runApp(MyApp());
 }
 
@@ -26,10 +32,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 
 

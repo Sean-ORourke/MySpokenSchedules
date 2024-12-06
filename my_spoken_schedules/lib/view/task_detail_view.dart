@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_spoken_schedules/notification/notification.dart';
+
 
 class EditTaskPage extends StatefulWidget {
   final String taskLabel;
@@ -83,13 +85,13 @@ class EditTaskPage extends StatefulWidget {
               ),
             ),
             SizedBox(height: 16.0),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     // Add logic to save changes
-            //     Navigator.pop(context);
-            //   },
-            //   child: Text('Save'),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                DateTime scheduledDate = DateTime.now().add(const Duration(seconds: 5));
+                NotificationService.scheduleNotification("Scheduled Notification", "This notification is scheduled", scheduledDate);
+              },
+              child: Text('Set notification'),
+            ),
           ],
         ),
       ),
