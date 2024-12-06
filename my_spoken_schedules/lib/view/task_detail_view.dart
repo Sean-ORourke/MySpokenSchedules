@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class EditTaskPage extends StatefulWidget {
+class TaskDetailView extends StatefulWidget {
   final String taskLabel;
   final String taskMessage;
 
-  EditTaskPage ({required this.taskLabel, required this.taskMessage});
+  TaskDetailView ({required this.taskLabel, required this.taskMessage});
 
 
   @override
-  _EditTaskPageState createState() => _EditTaskPageState();
+  _TaskDetailViewState createState() => _TaskDetailViewState();
 
 }
 
   
 
-  class _EditTaskPageState extends State<EditTaskPage> {
+  class _TaskDetailViewState extends State<TaskDetailView> {
 
     late TextEditingController labelController;
     late TextEditingController messageController;

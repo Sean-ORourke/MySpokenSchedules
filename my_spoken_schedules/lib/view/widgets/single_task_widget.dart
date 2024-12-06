@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
-import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
+import 'package:my_spoken_schedules/view_model/task_view_model.dart';
 import 'package:my_spoken_schedules/view/task_detail_view.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +37,7 @@ class SingleTaskWidget extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EditTaskPage(
+                    builder: (context) => TaskDetailView(
                       taskLabel: taskViewModel.taskModel!.label ?? 'No Label',
                       taskMessage: taskViewModel.taskModel!.message ?? 'No Message',
                     ),

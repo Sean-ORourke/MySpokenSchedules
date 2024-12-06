@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/view/widgets/single_task_widget.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
-import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
+import 'package:my_spoken_schedules/view_model/task_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ScheduleDetailView extends StatelessWidget {

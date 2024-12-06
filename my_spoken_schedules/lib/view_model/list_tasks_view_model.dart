@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:my_spoken_schedules/model/task_model.dart';
 
-import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
+import 'package:my_spoken_schedules/view_model/task_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ListTasksViewModel extends ChangeNotifier {
