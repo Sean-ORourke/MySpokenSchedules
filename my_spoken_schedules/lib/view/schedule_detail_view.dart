@@ -14,6 +14,8 @@ class ScheduleDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheduleViewModel =
         Provider.of<SchedulesViewModel>(context, listen: true);
+    int taskCount = scheduleViewModel.scheduleModel?.tasks?.length ?? 0;
+    taskCount++;
     return Scaffold(
       appBar: AppBar(
         title:
@@ -23,8 +25,17 @@ class ScheduleDetailView extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: scheduleViewModel.scheduleModel?.tasks?.length ?? 0,
+              itemCount: taskCount,
               itemBuilder: (context, index) {
+                if (index == taskCount - 1) {
+                  return ListTile(
+                    title: Text('Add New Task'),
+                    trailing: Icon(Icons.add),
+                    onTap: () {
+                      scheduleViewModel.addTask();
+                    },
+                  );
+                }
                 final task = scheduleViewModel.scheduleModel!.tasks![index];
                 return SingleTaskWidget(
                   taskViewModel: TaskViewModel(task),
@@ -32,13 +43,6 @@ class ScheduleDetailView extends StatelessWidget {
                 );
               },
             ),
-          ),
-          ElevatedButton.icon(
-            onPressed: () {
-              scheduleViewModel.addTask();
-            },
-            icon: Icon(Icons.add),
-            label: Text('Add Task'),
           ),
         ],
       ),
