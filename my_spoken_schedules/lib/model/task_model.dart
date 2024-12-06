@@ -1,12 +1,12 @@
-class task_model {
+class TaskModel {
   String? id;
   String? label;
   String? time;
   String? message;
 
-  task_model({this.id, this.label, this.time, this.message});
+  TaskModel({this.id, this.label, this.time, this.message});
 
-  task_model.fromJson(Map<String, dynamic> json) {
+  TaskModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     label = json['label'];
     time = json['time'];

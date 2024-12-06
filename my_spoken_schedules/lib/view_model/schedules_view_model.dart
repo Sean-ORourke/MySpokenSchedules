@@ -4,7 +4,7 @@ import 'package:my_spoken_schedules/model/task_model.dart';
 import 'package:provider/provider.dart';
 
 class SchedulesViewModel extends ChangeNotifier {
-  final schedule_model? scheduleModel;
+  final ScheduleModel? scheduleModel;
 
   SchedulesViewModel(this.scheduleModel);
 
@@ -12,7 +12,7 @@ class SchedulesViewModel extends ChangeNotifier {
 
   void addTask() {
   debugPrint("Adding task...");
-  final newTask = task_model(
+  final newTask = TaskModel(
     id: latestID.toString(),
     label: "New Task",
     time: DateTime.now().toString(),

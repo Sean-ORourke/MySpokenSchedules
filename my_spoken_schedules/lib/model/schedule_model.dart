@@ -1,21 +1,21 @@
 import 'package:my_spoken_schedules/model/task_model.dart';
 
-class schedule_model {
+class ScheduleModel {
   String? id;
   String? label;
   List<String>? days;
-  List<task_model>? tasks;
+  List<TaskModel>? tasks;
   bool? isActive;
 
-  schedule_model({this.id, this.label, this.days, List<task_model>? tasks, this.isActive})
+  ScheduleModel({this.id, this.label, this.days, List<TaskModel>? tasks, this.isActive})
       : tasks = tasks ?? []; // Initialize tasks as an empty list
 
-  schedule_model.fromJson(Map<String, dynamic> json)
+  ScheduleModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         label = json['label'],
         days = List<String>.from(json['days'] ?? []),
         tasks = (json['tasks'] as List<dynamic>?)
-            ?.map((taskJson) => task_model.fromJson(taskJson))
+            ?.map((taskJson) => TaskModel.fromJson(taskJson))
             .toList(),
         isActive = json['isActive'];
 }

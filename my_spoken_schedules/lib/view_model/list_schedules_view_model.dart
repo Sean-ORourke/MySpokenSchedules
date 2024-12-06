@@ -33,7 +33,7 @@ class ListSchedulesViewModel extends ChangeNotifier {
   ];
 
   // Use type-safe parsing
-  final List<schedule_model> scheduleList = json.map((e) => schedule_model.fromJson(e)).toList();
+  final List<ScheduleModel> scheduleList = json.map((e) => ScheduleModel.fromJson(e)).toList();
 
   this.schedules = scheduleList.map((schedule) => SchedulesViewModel(schedule)).toList();
   notifyListeners();
@@ -66,7 +66,7 @@ class ListSchedulesViewModel extends ChangeNotifier {
   // }
 
   addSchedule() {
-    final newSchedule = schedule_model(
+    final newSchedule = ScheduleModel(
       id: DateTime.now().toString(),
       label: "New Schedule",
       days: [],

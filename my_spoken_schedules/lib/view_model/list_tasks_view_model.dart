@@ -47,7 +47,7 @@ class ListTasksViewModel extends ChangeNotifier {
 
     // Parse JSON into TaskModel objects
     final taskList = json
-        .map((task) => task_model(
+        .map((task) => TaskModel(
             id: task["id"], label: task["label"], message: task["message"]))
         .toList();
 
@@ -80,7 +80,7 @@ class ListTasksViewModel extends ChangeNotifier {
       "message": "New Message"
     };
 
-    final newTask = task_model(
+    final newTask = TaskModel(
       id: newJson["id"],
       label: newJson["label"],
       message: newJson["message"]
