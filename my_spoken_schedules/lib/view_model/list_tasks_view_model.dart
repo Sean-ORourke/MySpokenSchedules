@@ -7,7 +7,7 @@ import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ListTasksViewModel extends ChangeNotifier {
-  List<TasksViewModel> tasks = <TasksViewModel>[];
+  List<TaskViewModel> tasks = <TaskViewModel>[];
 
   int latestID = 5;
 
@@ -52,7 +52,7 @@ class ListTasksViewModel extends ChangeNotifier {
         .toList();
 
     // Map TaskModel to TasksViewModel
-    this.tasks = taskList.map((task) => TasksViewModel(task)).toList();
+    this.tasks = taskList.map((task) => TaskViewModel(task)).toList();
 
     // all I have to do is fill this.tasks with a List<TasksViewModel>
 
@@ -86,7 +86,7 @@ class ListTasksViewModel extends ChangeNotifier {
       message: newJson["message"]
     ); //newJson.map((task) => task_model(id: task["id"], label: task["label"], message: task["message"]));
 
-    final newTaskViewModel = TasksViewModel(newTask);
+    final newTaskViewModel = TaskViewModel(newTask);
 
     tasks.add(newTaskViewModel);
 

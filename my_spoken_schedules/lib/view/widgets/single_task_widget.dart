@@ -5,7 +5,7 @@ import 'package:my_spoken_schedules/view/task_detail_view.dart';
 import 'package:provider/provider.dart';
 
 class SingleTaskWidget extends StatelessWidget {
-  final TasksViewModel taskViewModel;
+  final TaskViewModel taskViewModel;
   final SchedulesViewModel scheduleViewModel; // Add scheduleViewModel
 
   const SingleTaskWidget({

@@ -24,7 +24,7 @@ class ScheduleDetailView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final task = scheduleViewModel.scheduleModel!.tasks![index];
                 return SingleTaskWidget(
-                  taskViewModel: TasksViewModel(task),
+                  taskViewModel: TaskViewModel(task),
                   scheduleViewModel: scheduleViewModel,
                 );
               },

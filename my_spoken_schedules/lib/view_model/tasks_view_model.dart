@@ -1,7 +1,8 @@
 import 'package:my_spoken_schedules/model/task_model.dart';
 
-class TasksViewModel {
+class TaskViewModel {
   final TaskModel? taskModel;
 
-  TasksViewModel(this.taskModel);
+  TaskViewModel(this.taskModel);
+
 }
