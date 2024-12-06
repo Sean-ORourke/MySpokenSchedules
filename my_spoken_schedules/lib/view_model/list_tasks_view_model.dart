@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class ListTasksViewModel extends ChangeNotifier {
   List<TasksViewModel> tasks = <TasksViewModel>[];
 
-  int latestID = 4;
+  int latestID = 5;
 
   fetchTasks() {
     // final json = task_model as List<dynamic>;
@@ -39,7 +39,7 @@ class ListTasksViewModel extends ChangeNotifier {
         "message": "ibuprofein, excedrin migrane, testosterone, multivitamin",
       },
       {
-        "id": "3",
+        "id": "4",
         "label": "time for skincare routine",
         "message": "mondays are sugar scrub, hydrophillic acid, and face lotion",
       }
@@ -73,16 +73,18 @@ class ListTasksViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-
   addTask() {
-    final newJson =
-      {
-        "id": latestID.toString(),
-        "label": "New Task",
-        "message": "New Message"
-      };
+    final newJson = {
+      "id": latestID.toString(),
+      "label": "New Task",
+      "message": "New Message"
+    };
 
-    final newTask = task_model(id: newJson["id"], label: newJson["label"], message: newJson["message"]); //newJson.map((task) => task_model(id: task["id"], label: task["label"], message: task["message"]));
+    final newTask = task_model(
+      id: newJson["id"],
+      label: newJson["label"],
+      message: newJson["message"]
+    ); //newJson.map((task) => task_model(id: task["id"], label: task["label"], message: task["message"]));
 
     final newTaskViewModel = TasksViewModel(newTask);
 
