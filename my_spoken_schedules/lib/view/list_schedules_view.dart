@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_spoken_schedules/view_model/list_tasks_view_model.dart';
+
 import 'package:provider/provider.dart';
 import 'package:my_spoken_schedules/view_model/list_schedules_view_model.dart';
 import 'package:my_spoken_schedules/view/schedule_detail_view.dart';
@@ -14,7 +14,8 @@ class _ScheduleListViewState extends State<ScheduleListView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ListSchedulesViewModel>(context, listen: false).fetchSchedules();
+      Provider.of<ListSchedulesViewModel>(context, listen: false)
+          .fetchSchedules();
     });
   }
 
@@ -40,22 +41,24 @@ class _ScheduleListViewState extends State<ScheduleListView> {
           }
           final scheduleViewModel = vm.schedules[index];
           return ListTile(
-            title: Text(scheduleViewModel.scheduleModel?.label ?? 'Unnamed Schedule'),
+            title: Text(
+                scheduleViewModel.scheduleModel?.label ?? 'Unnamed Schedule'),
             subtitle: Text(
               (scheduleViewModel.scheduleModel?.days ?? []).join(', '),
             ),
             onTap: () {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => ChangeNotifierProvider.value(
-        value: scheduleViewModel, // Pass the existing SchedulesViewModel instance
-        child: ScheduleDetailView(scheduleViewModel: scheduleViewModel),
-      ),
-    ),
-  );
-},
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChangeNotifierProvider.value(
+                    value:
+                        scheduleViewModel, // Pass the existing SchedulesViewModel instance
+                    child: ScheduleDetailView(
+                        scheduleViewModel: scheduleViewModel),
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

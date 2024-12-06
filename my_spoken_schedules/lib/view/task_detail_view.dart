@@ -4,22 +4,16 @@ class TaskDetailView extends StatefulWidget {
   final String taskLabel;
   final String taskMessage;
 
-  TaskDetailView ({required this.taskLabel, required this.taskMessage});
-
+  TaskDetailView({required this.taskLabel, required this.taskMessage});
 
   @override
   _TaskDetailViewState createState() => _TaskDetailViewState();
-
 }
 
-  
-
-  class _TaskDetailViewState extends State<TaskDetailView> {
-
-    late TextEditingController labelController;
-    late TextEditingController messageController;
-    TimeOfDay? selectedTime; // Store the selected time
-
+class _TaskDetailViewState extends State<TaskDetailView> {
+  late TextEditingController labelController;
+  late TextEditingController messageController;
+  TimeOfDay? selectedTime; // Store the selected time
 
   @override
   void initState() {
@@ -28,14 +22,8 @@ class TaskDetailView extends StatefulWidget {
     messageController = TextEditingController(text: widget.taskMessage);
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
-    
-
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.taskLabel),

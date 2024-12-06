@@ -12,6 +12,4 @@ class TaskModel {
     time = json['time'];
     message = json['message'];
   }
-
-  
 }

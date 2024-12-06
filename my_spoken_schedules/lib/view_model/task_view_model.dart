@@ -4,5 +4,4 @@ class TaskViewModel {
   final TaskModel? taskModel;
 
   TaskViewModel(this.taskModel);
-
 }
