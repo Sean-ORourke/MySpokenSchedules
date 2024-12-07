@@ -31,6 +31,8 @@ class SingleTaskWidget extends StatefulWidget {
     super.initState();
     taskViewModel = widget.taskViewModel!;
     scheduleViewModel = widget.scheduleViewModel!;
+    scheduleViewModel.refreshTasks();
+    print("SINGLE TASK WIDGET INIT STATE");
   }
 
   @override
@@ -67,14 +69,17 @@ class SingleTaskWidget extends StatefulWidget {
                   MaterialPageRoute(
                     builder: (context) => TaskDetailView(
                       taskViewModel: taskViewModel,
+                      scheduleViewModel: scheduleViewModel,
                     ),
                   ),
-                ).then((_) {
-                  setState() {
-                    taskViewModel = taskViewModel;
-                    scheduleViewModel = scheduleViewModel;
-                  }
-                });
+                )
+                // .then((_) {
+                //   setState() {
+                //     taskViewModel = taskViewModel;
+                //     scheduleViewModel = scheduleViewModel;
+                //   }
+                // })
+                ;
               },
             ),
             SizedBox(width: 8.0), // Space between buttons

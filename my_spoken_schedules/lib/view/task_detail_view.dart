@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
 import 'package:my_spoken_schedules/view_model/task_view_model.dart';
 
 class TaskDetailView extends StatefulWidget {
   // final String taskLabel;
   // final String taskMessage;
-  final TaskViewModel? taskViewModel;
+  TaskViewModel? taskViewModel;
+  ScheduleViewModel? scheduleViewModel;
 
   TaskDetailView(
       {// {required this.taskLabel,
       // required this.taskMessage,
-      required this.taskViewModel});
+      required this.taskViewModel, required this. scheduleViewModel});
 
   @override
   _TaskDetailViewState createState() => _TaskDetailViewState();
@@ -20,6 +22,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
   late TextEditingController labelController;
   late TextEditingController messageController;
   late TaskViewModel taskViewModel;
+  late ScheduleViewModel scheduleViewModel;
   TimeOfDay? selectedTime; // Store the selected time
 
   _TaskDetailViewState();
@@ -28,6 +31,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
   void initState() {
     super.initState();
     taskViewModel = widget.taskViewModel!;
+    scheduleViewModel = widget.scheduleViewModel!;
     labelController = TextEditingController(text: widget.taskViewModel!.taskModel?.label);
     messageController = TextEditingController(text: widget.taskViewModel!.taskModel?.message);
   }
@@ -128,7 +132,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                         debugPrint(
                             "Value for field labelController saved as ${labelController.text}");
                         widget.taskViewModel!.updateTask(labelController.text, messageController.text);
-                        
+                        scheduleViewModel.refreshTasks();
                         setState(() {
                           titleText = Text(labelController.text);
                         });
@@ -144,7 +148,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                             "Value for field messageController saved as ${messageController.text}");
                             widget.taskViewModel!.updateTask(labelController.text, messageController.text);
                             titleText = Text(widget.taskViewModel!.taskModel?.label ?? "task");
-                            
+                            scheduleViewModel.refreshTasks();
                       }),
                   SizedBox(height: 16.0),
                   ElevatedButton(

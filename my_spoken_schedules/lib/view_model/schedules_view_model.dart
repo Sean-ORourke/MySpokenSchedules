@@ -31,4 +31,8 @@ class ScheduleViewModel extends ChangeNotifier {
     debugPrint(
         "Task removed. Remaining tasks: ${scheduleModel?.tasks?.length}");
   }
+
+  refreshTasks() {
+    notifyListeners();
+  }
 }
