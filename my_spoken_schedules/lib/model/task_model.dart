@@ -1,10 +1,10 @@
 class TaskModel {
-  String? id;
+  late int id;
   String? label;
   String? time;
   String? message;
 
-  TaskModel({this.id, this.label, this.time, this.message});
+  TaskModel({required this.id, this.label, this.time, this.message});
 
   TaskModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

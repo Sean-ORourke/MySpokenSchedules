@@ -25,15 +25,15 @@ class _ScheduleListViewState extends State<ScheduleListView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Schedules'),
+        title: const Text('Schedules'),
       ),
       body: ListView.builder(
         itemCount: vm.schedules.length + 1,
         itemBuilder: (context, index) {
           if (index == vm.schedules.length) {
             return ListTile(
-              title: Text('Add New Schedule'),
-              trailing: Icon(Icons.add),
+              title: const Text('Add New Schedule'),
+              trailing: const Icon(Icons.add),
               onTap: () {
                 vm.addSchedule();
               },

@@ -14,12 +14,12 @@ class ScheduleDetailView extends StatelessWidget with ChangeNotifier {
   Widget build(BuildContext context) {
     final scheduleViewModel =
         Provider.of<ScheduleViewModel>(context, listen: true);
-    int taskCount = scheduleViewModel.scheduleModel?.tasks?.length ?? 0;
+    int taskCount = scheduleViewModel.scheduleModel.tasks?.length ?? 0;
     taskCount++;
     return Scaffold(
       appBar: AppBar(
         title:
-            Text(scheduleViewModel.scheduleModel?.label ?? 'Schedule Details'),
+            Text(scheduleViewModel.scheduleModel.label ?? 'Schedule Details'),
       ),
       body: Column(
         children: [
@@ -29,15 +29,16 @@ class ScheduleDetailView extends StatelessWidget with ChangeNotifier {
               itemBuilder: (context, index) {
                 notifyListeners();
                 if (index == taskCount - 1) {
+                  debugPrint("taskCount == $taskCount");
                   return ListTile(
-                    title: Text('Add New Task'),
-                    trailing: Icon(Icons.add),
+                    title: const Text('Add New Task'),
+                    trailing: const Icon(Icons.add),
                     onTap: () {
                       scheduleViewModel.addTask();
                     },
                   );
                 }
-                final task = scheduleViewModel.scheduleModel!.tasks![index];
+                final task = scheduleViewModel.scheduleModel.tasks![index];
                 return SingleTaskWidget(
                   taskViewModel: TaskViewModel(task),
                   scheduleViewModel: scheduleViewModel,

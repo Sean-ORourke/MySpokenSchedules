@@ -29,8 +29,8 @@ class SingleTaskWidget extends StatefulWidget {
   @override
   void initState() {
     super.initState();
-    taskViewModel = widget.taskViewModel!;
-    scheduleViewModel = widget.scheduleViewModel!;
+    taskViewModel = widget.taskViewModel;
+    scheduleViewModel = widget.scheduleViewModel;
     scheduleViewModel.refreshTasks();
     print("SINGLE TASK WIDGET INIT STATE");
   }
@@ -62,7 +62,7 @@ class SingleTaskWidget extends StatefulWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              icon: Icon(Icons.mode_edit),
+              icon: const Icon(Icons.mode_edit),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -82,9 +82,9 @@ class SingleTaskWidget extends StatefulWidget {
                 ;
               },
             ),
-            SizedBox(width: 8.0), // Space between buttons
+            const SizedBox(width: 8.0), // Space between buttons
             IconButton(
-              icon: Icon(Icons.delete_forever),
+              icon: const Icon(Icons.delete_forever),
               onPressed: () {
                 final taskId = taskViewModel.taskModel?.id;
                 if (taskId != null) {

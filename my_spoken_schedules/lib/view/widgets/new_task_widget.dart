@@ -11,9 +11,9 @@ class NewTaskWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.all(50.0),
-      title: Text('Add New Task'),
-      trailing: Icon(Icons.add_box_outlined),
+      contentPadding: const EdgeInsets.all(50.0),
+      title: const Text('Add New Task'),
+      trailing: const Icon(Icons.add_box_outlined),
       onTap: onAddTask, // Trigger the callback to add a new task
     );
   }
