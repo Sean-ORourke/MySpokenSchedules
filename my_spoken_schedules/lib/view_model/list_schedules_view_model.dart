@@ -91,8 +91,11 @@ class ListSchedulesViewModel extends ChangeNotifier {
       tasks: [],
       isActive: true,
     );
-
     schedules.add(ScheduleViewModel(newSchedule));
+    notifyListeners();
+  }
+
+  refreshTasks() {
     notifyListeners();
   }
 }

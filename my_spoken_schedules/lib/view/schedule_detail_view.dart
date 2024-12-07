@@ -4,10 +4,10 @@ import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
 import 'package:my_spoken_schedules/view_model/task_view_model.dart';
 import 'package:provider/provider.dart';
 
-class ScheduleDetailView extends StatelessWidget {
+class ScheduleDetailView extends StatelessWidget with ChangeNotifier {
   final ScheduleViewModel scheduleViewModel;
 
-  const ScheduleDetailView({Key? key, required this.scheduleViewModel})
+  ScheduleDetailView({Key? key, required this.scheduleViewModel})
       : super(key: key);
 
   @override
@@ -27,6 +27,7 @@ class ScheduleDetailView extends StatelessWidget {
             child: ListView.builder(
               itemCount: taskCount,
               itemBuilder: (context, index) {
+                notifyListeners();
                 if (index == taskCount - 1) {
                   return ListTile(
                     title: Text('Add New Task'),

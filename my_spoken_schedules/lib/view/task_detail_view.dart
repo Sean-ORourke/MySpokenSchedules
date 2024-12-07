@@ -16,7 +16,7 @@ class TaskDetailView extends StatefulWidget {
   _TaskDetailViewState createState() => _TaskDetailViewState();
 }
 
-class _TaskDetailViewState extends State<TaskDetailView> with ChangeNotifier{
+class _TaskDetailViewState extends State<TaskDetailView> {
   late TextEditingController labelController;
   late TextEditingController messageController;
   late TaskViewModel taskViewModel;
@@ -117,6 +117,7 @@ class _TaskDetailViewState extends State<TaskDetailView> with ChangeNotifier{
               autovalidateMode: AutovalidateMode.always,
               onChanged: () {
                 Form.of(primaryFocus!.context!).save();
+                titleText = Text(labelController.text);
               },
               child: Column(
                 children: [
@@ -127,7 +128,12 @@ class _TaskDetailViewState extends State<TaskDetailView> with ChangeNotifier{
                         debugPrint(
                             "Value for field labelController saved as ${labelController.text}");
                         widget.taskViewModel!.updateTask(labelController.text, messageController.text);
-                        notifyListeners();
+                        
+                        setState(() {
+                          titleText = Text(labelController.text);
+                        });
+                        
+
                       }),
                   SizedBox(height: 16.0),
                   TextFormField(
@@ -138,7 +144,7 @@ class _TaskDetailViewState extends State<TaskDetailView> with ChangeNotifier{
                             "Value for field messageController saved as ${messageController.text}");
                             widget.taskViewModel!.updateTask(labelController.text, messageController.text);
                             titleText = Text(widget.taskViewModel!.taskModel?.label ?? "task");
-                            notifyListeners();
+                            
                       }),
                   SizedBox(height: 16.0),
                   ElevatedButton(
@@ -165,7 +171,7 @@ class _TaskDetailViewState extends State<TaskDetailView> with ChangeNotifier{
                     },
                     child: Text(
                       selectedTime == null
-                          ? 'Select Time' // Default button text
+                          ? widget.taskViewModel!.taskModel?.time ?? "Select Time" // Default button text
                           : selectedTime!.format(context), // Show selected time
                     ),
                   ),
