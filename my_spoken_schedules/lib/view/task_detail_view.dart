@@ -87,7 +87,7 @@ class EditTaskPage extends StatefulWidget {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                DateTime scheduledDate = DateTime.now().add(const Duration(seconds: 5));
+                DateTime scheduledDate = DateTime(2024, 12, 7, 23, 59, 59);//.now().add(const Duration(seconds: 5));
                 NotificationService.scheduleNotification("Scheduled Notification", "This notification is scheduled", scheduledDate);
               },
               child: Text('Set notification'),
