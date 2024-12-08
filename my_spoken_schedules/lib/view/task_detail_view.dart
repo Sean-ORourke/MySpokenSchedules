@@ -181,6 +181,19 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                     ),
                   ),
                   SizedBox(height: 16.0),
+                  
+                  ElevatedButton(
+                    onPressed: () {
+                      DateTime now = DateTime.now();
+                      int id = 0;
+                      int timeHour = 23;
+                      int timeMinute = 50;
+                      DateTime scheduledDate = DateTime(now.year, now.month, now.day, timeHour, timeMinute);
+                      //DateTime scheduledDate = DateTime(2024, 12, 7, 23, 59, 59);// DateTime.now().add(const Duration(seconds: 5));
+                      NotificationService.scheduleNotification(id, labelController.text, messageController.text, scheduledDate);
+                    },
+                    child: Text('Set notification'),
+                  ),
                   // ElevatedButton(
                   //   onPressed: () {
                   //     // Add logic to save changes
