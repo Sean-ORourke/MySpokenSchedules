@@ -33,7 +33,7 @@ class NotificationService{
     await flutterLocalNotificationsPlugin.show(0, title, body, platformChannelSpecifics);
   }
 
-  static Future<void> scheduleNotification(String title, String body, DateTime scheduledDate) async{
+  static Future<void> scheduleNotification(int id, String title, String body, DateTime scheduledDate) async{
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: AndroidNotificationDetails(
         "channelId",
@@ -43,7 +43,7 @@ class NotificationService{
          )
     );
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      0,
+      id,
       title, 
       body, 
       tz.TZDateTime.from(scheduledDate, tz.local), 
