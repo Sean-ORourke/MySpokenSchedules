@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
 import 'package:my_spoken_schedules/view_model/task_view_model.dart';
+import 'package:my_spoken_schedules/notification/notification.dart';
 
 class TaskDetailView extends StatefulWidget {
   // final String taskLabel;
@@ -86,13 +87,13 @@ class _TaskDetailViewState extends State<TaskDetailView> {
               ),
             ),
             SizedBox(height: 16.0),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     // Add logic to save changes
-            //     Navigator.pop(context);
-            //   },
-            //   child: Text('Save'),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                DateTime scheduledDate = DateTime(2024, 12, 7, 23, 59, 59);//.now().add(const Duration(seconds: 5));
+                NotificationService.scheduleNotification("Scheduled Notification", "This notification is scheduled", scheduledDate);
+              },
+              child: Text('Set notification'),
+            ),
           ],
         ),
       ),
