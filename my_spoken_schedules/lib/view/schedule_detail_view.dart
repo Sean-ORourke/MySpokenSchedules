@@ -12,8 +12,14 @@ class ScheduleDetailView extends StatelessWidget with ChangeNotifier {
 
   @override
   Widget build(BuildContext context) {
+    notifyListeners();
     final scheduleViewModel =
         Provider.of<ScheduleViewModel>(context, listen: true);
+        // final taskViewModel =
+        // Provider.of<ScheduleViewModel>(context, listen: true);
+        notifyListeners();
+        // scheduleViewModel.refreshTasks();
+        // taskViewModel.refreshTasks();
     int taskCount = scheduleViewModel.scheduleModel.tasks?.length ?? 0;
     taskCount++;
     return Scaffold(
@@ -28,6 +34,7 @@ class ScheduleDetailView extends StatelessWidget with ChangeNotifier {
               itemCount: taskCount,
               itemBuilder: (context, index) {
                 notifyListeners();
+                // taskViewModel.refreshTasks();
                 if (index == taskCount - 1) {
                   debugPrint("taskCount == $taskCount");
                   return ListTile(
@@ -38,7 +45,9 @@ class ScheduleDetailView extends StatelessWidget with ChangeNotifier {
                     },
                   );
                 }
+                notifyListeners();
                 final task = scheduleViewModel.scheduleModel.tasks![index];
+                TaskViewModel(task).refreshTasks();
                 return SingleTaskWidget(
                   taskViewModel: TaskViewModel(task),
                   scheduleViewModel: scheduleViewModel,

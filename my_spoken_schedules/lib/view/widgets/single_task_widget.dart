@@ -4,46 +4,28 @@ import 'package:my_spoken_schedules/view_model/task_view_model.dart';
 import 'package:my_spoken_schedules/view/task_detail_view.dart';
 import 'package:provider/provider.dart';
 
-class SingleTaskWidget extends StatefulWidget {
+class SingleTaskWidget extends StatelessWidget {
   final TaskViewModel taskViewModel;
   final ScheduleViewModel scheduleViewModel; // Add scheduleViewModel
 
   const SingleTaskWidget({
     Key? key,
     required this.taskViewModel,
-    required this.scheduleViewModel, // Add this parameter
+    required this.scheduleViewModel,
   }) : super(key: key);
-
-   @override
-  _SingleTaskWidgetState createState() => _SingleTaskWidgetState();
-
-}
-
-  class _SingleTaskWidgetState extends State<SingleTaskWidget> {
-  late ScheduleViewModel scheduleViewModel;
-  late TaskViewModel taskViewModel;
-  TimeOfDay? selectedTime; // Store the selected time
-
-  _SingleTaskWidgetState();
-
-  @override
-  void initState() {
-    super.initState();
-    taskViewModel = widget.taskViewModel;
-    scheduleViewModel = widget.scheduleViewModel;
-    scheduleViewModel.refreshTasks();
-    print("SINGLE TASK WIDGET INIT STATE");
-  }
 
   @override
   Widget build(BuildContext context) {
-    scheduleViewModel =
-        Provider.of<ScheduleViewModel>(context, listen: true);
-    return Card(
+    //scheduleViewModel = Provider.of<ScheduleViewModel>(context, listen: true);
+        // taskViewModel =
+        // Provider.of<TaskViewModel>(context, listen: true);
+      taskViewModel.refreshTasks();
+    return Card( 
       margin: const EdgeInsets.all(8.0),
       child: ListTile(
         title: Text(
-          taskViewModel.taskModel!.label ??
+          taskViewModel.taskModel!.label 
+          ??
               'No Label', 
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -75,8 +57,11 @@ class SingleTaskWidget extends StatefulWidget {
                 )
                 // .then((_) {
                 //   setState() {
+                //     taskViewModel.refreshTasks();
+                //     scheduleViewModel.refreshTasks();
                 //     taskViewModel = taskViewModel;
                 //     scheduleViewModel = scheduleViewModel;
+                //     this.initState();
                 //   }
                 // })
                 ;
@@ -89,8 +74,12 @@ class SingleTaskWidget extends StatefulWidget {
                 final taskId = taskViewModel.taskModel?.id;
                 if (taskId != null) {
                   scheduleViewModel.removeTask(taskId);
+                  // taskViewModel.refreshTasks();
+                  // notifyListeners();
                 } else {
                   debugPrint("Task ID is null. Cannot remove task.");
+                  // taskViewModel.refreshTasks();
+                  // notifyListeners();
                 }
               },
             ),

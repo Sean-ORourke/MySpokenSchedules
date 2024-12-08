@@ -12,4 +12,8 @@ class TaskViewModel extends ChangeNotifier {
     taskModel?.message = newMessage;
     notifyListeners();
   }
+
+  refreshTasks() {
+    notifyListeners();
+  }
 }
