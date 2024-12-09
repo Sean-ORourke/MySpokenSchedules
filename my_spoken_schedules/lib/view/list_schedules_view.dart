@@ -46,6 +46,21 @@ class _ScheduleListViewState extends State<ScheduleListView> {
             subtitle: Text(
               (scheduleViewModel.scheduleModel?.days ?? []).join(', '),
             ),
+            trailing: IconButton(
+              icon: const Icon(Icons.delete_forever),
+              onPressed: () {
+                final scheduleId = scheduleViewModel.scheduleModel.id;
+                if (scheduleId != null) {
+                  vm.removeSchedule(scheduleId);
+                  // taskViewModel.refreshTasks();
+                  // notifyListeners();
+                } else {
+                  debugPrint("Schedule ID is null. Cannot remove task.");
+                  // taskViewModel.refreshTasks();
+                  // notifyListeners();
+                }
+              },
+            ),
             onTap: () {
               Navigator.push(
                 context,

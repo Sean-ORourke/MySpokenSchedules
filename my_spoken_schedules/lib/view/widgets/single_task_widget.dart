@@ -19,7 +19,7 @@ class SingleTaskWidget extends StatelessWidget {
     //scheduleViewModel = Provider.of<ScheduleViewModel>(context, listen: true);
         // taskViewModel =
         // Provider.of<TaskViewModel>(context, listen: true);
-      taskViewModel.refreshTasks();
+      taskViewModel.refreshTask();
     return Card( 
       margin: const EdgeInsets.all(8.0),
       child: ListTile(

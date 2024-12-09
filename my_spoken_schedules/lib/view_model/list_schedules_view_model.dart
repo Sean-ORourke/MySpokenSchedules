@@ -100,12 +100,18 @@ class ListSchedulesViewModel extends ChangeNotifier {
     final newSchedule = ScheduleModel(
       id: newestScheduleID,
       label: "New Schedule",
-      days: [],
+      days: ["Monday"],
       tasks: [],
       isActive: true,
       latestID: 0
     );
     schedules.add(ScheduleViewModel(newSchedule));
+    notifyListeners();
+  }
+
+  removeSchedule(int id) {
+    debugPrint("deleting schedule $id");
+    schedules.removeWhere((schedule) => schedule.scheduleModel.id == id);
     notifyListeners();
   }
 }

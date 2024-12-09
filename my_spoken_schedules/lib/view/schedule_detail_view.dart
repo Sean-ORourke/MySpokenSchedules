@@ -47,7 +47,7 @@ class ScheduleDetailView extends StatelessWidget with ChangeNotifier {
                 }
                 notifyListeners();
                 final task = scheduleViewModel.scheduleModel.tasks![index];
-                TaskViewModel(task).refreshTasks();
+                TaskViewModel(task).refreshTask();
                 return SingleTaskWidget(
                   taskViewModel: TaskViewModel(task),
                   scheduleViewModel: scheduleViewModel,

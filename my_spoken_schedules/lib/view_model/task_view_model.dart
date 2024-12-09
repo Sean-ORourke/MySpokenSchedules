@@ -6,9 +6,23 @@ class TaskViewModel extends ChangeNotifier {
 
   TaskViewModel(this.taskModel);
 
+  //id shall never be edited
+
   updateLabel(String newLabel) {
     debugPrint("Updating task Label... ${taskModel?.id}, ${taskModel?.label}");
     taskModel?.label = newLabel;
+    notifyListeners();
+  }
+
+  updateDays(List<String> newDays) {
+    debugPrint("Updating task Label... ${taskModel?.id}, ${taskModel?.days}");
+    taskModel?.days = newDays;
+    notifyListeners();
+  }
+
+  updateTime(TimeOfDay newTime) {
+    debugPrint("Updating task time... ${taskModel?.id}, ${taskModel?.time}");
+    taskModel?.time = newTime;
     notifyListeners();
   }
 
@@ -18,13 +32,7 @@ class TaskViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateTime(TimeOfDay pickedTime) {
-    debugPrint("Updating task time... ${taskModel?.id}, ${taskModel?.time}");
-    taskModel?.time = pickedTime;
-    notifyListeners();
-  }
-
-  refreshTasks() {
+  refreshTask() {
     notifyListeners();
   }
 }
