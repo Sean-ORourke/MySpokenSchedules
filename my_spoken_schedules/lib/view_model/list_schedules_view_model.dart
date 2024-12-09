@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
 
@@ -18,14 +19,14 @@ class ListSchedulesViewModel extends ChangeNotifier {
             "id": 1,
             "label": "Task 1",
             "days": ["Monday", "Wednesday", "Friday"],
-            "time": "8:00 AM",
+            "time": const TimeOfDay(hour: 8, minute: 0),
             "message": "Morning meeting"
           },
           {
             "id": 2,
             "label": "Task 2",
             "days": ["Monday", "Wednesday", "Friday"],
-            "time": "12:00 PM",
+            "time": const TimeOfDay(hour: 12, minute: 0),
             "message": "Lunch with team"
           },
         ],
@@ -41,42 +42,42 @@ class ListSchedulesViewModel extends ChangeNotifier {
             "id": 1,
             "label": "Wake Up",
             "days": ["Saturday", "Sunday"],
-            "time": "8:00 AM",
+            "time": const TimeOfDay(hour: 8, minute: 0),
             "message": "Class is in 1 hour."
           },
           {
             "id": 2,
             "label": "shop",
             "days": ["Saturday", "Sunday"],
-            "time": "10:00 AM",
+            "time": const TimeOfDay(hour: 10, minute: 0),
             "message": "Grocery shopping"
           },
           {
             "id": 3,
             "label": "movie time!",
             "days": ["Saturday", "Sunday"],
-            "time": "3:00 PM",
+            "time": const TimeOfDay(hour: 15, minute: 0),
             "message": "Watch a movie"
           },
           {
             "id": 4,
             "label": "Workout",
             "days": ["Saturday", "Sunday"],
-            "time": "5:00 PM",
+            "time": const TimeOfDay(hour: 17, minute: 30),
             "message": "Workout Plan: Run, bike, lift weights."
           },
           {
             "id": 5,
             "label": "take Meds",
             "days": ["Saturday", "Sunday"],
-            "time": "8:00 PM",
+            "time": const TimeOfDay(hour: 18, minute: 45),
             "message": "ibuprofein, excedrin migrane, multivitamin",
           },
           {
             "id": 6,
             "label": "time for skincare routine",
             "days": ["Saturday", "Sunday"],
-            "time": "10:00 PM",
+            "time": const TimeOfDay(hour: 19, minute: 0),
             "message": "sugar scrub, hydrophillic acid, and face lotion",
           }
         ],

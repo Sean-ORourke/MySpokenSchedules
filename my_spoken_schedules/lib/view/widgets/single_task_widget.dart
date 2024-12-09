@@ -31,7 +31,7 @@ class SingleTaskWidget extends StatelessWidget {
         ),
         subtitle: RichText(
           text: TextSpan( 
-            text: taskViewModel.taskModel!.time ?? "No Time",
+            text: taskViewModel.taskModel!.time!.format(context) ?? "No Time", //(taskViewModel.taskModel!.time!.hour % 12).toString() + ":" + taskViewModel.taskModel!.time!.minute.toString() ?? "No Time",
             style: const TextStyle(color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: "\n\n${taskViewModel.taskModel!.message ?? 'No Message'}", style: const TextStyle(color: Colors.grey)),

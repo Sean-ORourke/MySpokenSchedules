@@ -107,12 +107,14 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                       if (pickedTime != null) {
                         setState(() {
                           selectedTime = pickedTime;
+                          widget.taskViewModel!.updateTime(pickedTime);
+                          scheduleViewModel.refreshTasks();
                         });
                       }
                     },
                     child: Text(
                       selectedTime == null
-                          ? widget.taskViewModel!.taskModel?.time ?? "Select Time" // Default button text
+                          ? widget.taskViewModel!.taskModel?.time!.format(context) ?? "Select Time" // Default button text
                           : selectedTime!.format(context), // Show selected time
                     ),
                   ),

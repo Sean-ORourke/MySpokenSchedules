@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class TaskModel {
   late int id;
   String? label;
   List<String>? days;
-  String? time;
+  TimeOfDay? time;
   String? message;
 
   TaskModel({required this.id, this.label, List<String>? days, this.time, this.message});

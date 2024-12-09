@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/model/task_model.dart';
 import 'package:my_spoken_schedules/view_model/task_view_model.dart';
@@ -16,7 +17,7 @@ class ScheduleViewModel extends ChangeNotifier {
       id: scheduleModel.latestID,
       label: "New Task",
       days: this.scheduleModel.days,
-      time: DateTime.now().toString(),
+      time: TimeOfDay.now(),
       message: "New task message",
     );
     scheduleModel.tasks?.add(newTask);

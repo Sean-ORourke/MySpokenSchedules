@@ -18,8 +18,10 @@ class TaskViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  updateTime() {
+  updateTime(TimeOfDay pickedTime) {
     debugPrint("Updating task time... ${taskModel?.id}, ${taskModel?.time}");
+    taskModel?.time = pickedTime;
+    notifyListeners();
   }
 
   refreshTasks() {
