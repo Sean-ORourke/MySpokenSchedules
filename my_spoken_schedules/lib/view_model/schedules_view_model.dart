@@ -39,14 +39,13 @@ class ScheduleViewModel extends ChangeNotifier {
         break;
       }
     }
-    // debugPrint("Removing task with ID: $taskId, from ${scheduleModel.tasks?.toString()}");
-    // scheduleModel.tasks?.removeWhere((task) => task.id == taskId);
-    // debugPrint("Removed task with ID: $taskId, now ${scheduleModel.tasks?.toString()}");
-    // notifyListeners();
-    // debugPrint(
-    //     "Task removed. Remaining tasks: ${scheduleModel.tasks?.length}");
     debugPrint("Task removed. Remaining tasks: ${scheduleModel.tasks?.length}");
-    //TaskViewModel(scheduleModel.tasks![taskId]).refreshTasks();
+    notifyListeners();
+  }
+
+  updateLabel(String newLabel) {
+    debugPrint("Updating Schedule Label... ${scheduleModel.id}, ${scheduleModel.label}");
+    scheduleModel.label = newLabel;
     notifyListeners();
   }
 

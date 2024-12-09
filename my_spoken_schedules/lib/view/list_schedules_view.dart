@@ -67,8 +67,9 @@ class _ScheduleListViewState extends State<ScheduleListView> {
                 MaterialPageRoute(
                   builder: (context) => ChangeNotifierProvider.value(
                     value:
+                        
                         scheduleViewModel, // Pass the existing SchedulesViewModel instance
-                    child: ScheduleDetailView(
+                    child: ScheduleDetailView( vm: vm,
                         scheduleViewModel: scheduleViewModel),
                   ),
                 ),
