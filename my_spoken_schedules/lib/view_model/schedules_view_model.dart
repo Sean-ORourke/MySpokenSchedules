@@ -49,6 +49,12 @@ class ScheduleViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  updateIsActive(bool newIsActive) {
+    debugPrint("Updating Schedule isActive... ${scheduleModel.id}, ${scheduleModel.isActive}");
+    scheduleModel.isActive = newIsActive;
+    notifyListeners();
+  }
+
   refreshTasks() {
     notifyListeners();
   }
