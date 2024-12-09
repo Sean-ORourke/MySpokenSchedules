@@ -30,19 +30,19 @@ class ScheduleDetailView extends StatefulWidget with ChangeNotifier {
   _ScheduleDetailViewState createState() => _ScheduleDetailViewState();
 }
 
-class _ScheduleDetailViewState extends State<ScheduleDetailView>
-    with ChangeNotifier {
+class _ScheduleDetailViewState extends State<ScheduleDetailView> {
   late TextEditingController labelController;
   late TextEditingController daysController;
   late ScheduleViewModel scheduleViewModel;
   late ListSchedulesViewModel vm;
-  bool? isMondayChecked = true;
-  bool? isTuesdayChecked = true;
-  bool? isWednesdayChecked = true;
-  bool? isThursdayChecked = true;
-  bool? isFridayChecked = true;
-  bool? isSaturdayChecked = true;
-  bool? isSundayChecked = true;
+  
+  late bool? isMondayChecked = false;
+  late bool? isTuesdayChecked = false;
+  late bool? isWednesdayChecked = false;
+  late bool? isThursdayChecked = false;
+  late bool? isFridayChecked = false;
+  late bool? isSaturdayChecked = false;
+  late bool? isSundayChecked = false;
   VisualDensity visualDensity =
       const VisualDensity(horizontal: VisualDensity.minimumDensity);
 
@@ -57,18 +57,28 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
         text: widget.scheduleViewModel!.scheduleModel?.label);
     daysController = TextEditingController(
         text: widget.scheduleViewModel!.scheduleModel?.days.toString());
+
+      for (int i = 0; i < scheduleViewModel.scheduleModel.days!.length; i++) {
+        if (scheduleViewModel.scheduleModel.days![i] == "Monday") isMondayChecked = true;
+        if (scheduleViewModel.scheduleModel.days![i] == "Tuesday") isTuesdayChecked = true;
+        if (scheduleViewModel.scheduleModel.days![i] == "Wednesday") isWednesdayChecked = true;
+        if (scheduleViewModel.scheduleModel.days![i] == "Thursday") isThursdayChecked = true;
+        if (scheduleViewModel.scheduleModel.days![i] == "Friday") isFridayChecked = true;
+        if (scheduleViewModel.scheduleModel.days![i] == "Saturday") isSaturdayChecked = true;
+        if (scheduleViewModel.scheduleModel.days![i] == "Sunday") isSundayChecked = true;
+      }
   }
 
   @override
   Widget build(BuildContext context) {
     Text titleText = Text(
         widget.scheduleViewModel!.scheduleModel?.label ?? "Unnamed Schedule");
-    notifyListeners();
+    
     final scheduleViewModel =
         Provider.of<ScheduleViewModel>(context, listen: true);
     // final taskViewModel =
     // Provider.of<ScheduleViewModel>(context, listen: true);
-    notifyListeners();
+    
     // scheduleViewModel.refreshTasks();
     // taskViewModel.refreshTasks();
     int taskCount = scheduleViewModel.scheduleModel.tasks?.length ?? 0;
@@ -106,7 +116,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                   "Value for field labelController saved as ${labelController.text}");
                               widget.scheduleViewModel!
                                   .updateLabel(labelController.text);
-                              notifyListeners();
+                              
                               scheduleViewModel.refreshTasks();
                               vm.refreshSchedules();
                               setState(() {
@@ -131,6 +141,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                 onChanged: (bool? value) {
                                   setState(() {
                                     isMondayChecked = value;
+                                    scheduleViewModel.updateDays(isMondayChecked!, "Monday");
+                                    vm.refreshSchedules();
                                   });
                                 },
                               ),
@@ -146,6 +158,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                 onChanged: (bool? value) {
                                   setState(() {
                                     isTuesdayChecked = value;
+                                    scheduleViewModel.updateDays(isTuesdayChecked!, "Tuesday");
+                                    vm.refreshSchedules();
                                   });
                                 },
                               ),
@@ -161,6 +175,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                 onChanged: (bool? value) {
                                   setState(() {
                                     isWednesdayChecked = value;
+                                    scheduleViewModel.updateDays(isWednesdayChecked!, "Wednesday");
+                                    vm.refreshSchedules();
                                   });
                                 },
                               ),
@@ -176,6 +192,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                 onChanged: (bool? value) {
                                   setState(() {
                                     isThursdayChecked = value;
+                                    scheduleViewModel.updateDays(isThursdayChecked!, "Thursday");
+                                    vm.refreshSchedules();
                                   });
                                 },
                               ),
@@ -191,6 +209,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                 onChanged: (bool? value) {
                                   setState(() {
                                     isFridayChecked = value;
+                                    scheduleViewModel.updateDays(isFridayChecked!, "Friday");
+                                    vm.refreshSchedules();
                                   });
                                 },
                               ),
@@ -206,6 +226,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                 onChanged: (bool? value) {
                                   setState(() {
                                     isSaturdayChecked = value;
+                                    scheduleViewModel.updateDays(isSaturdayChecked!, "Saturday");
+                                    vm.refreshSchedules();
                                   });
                                 },
                               ),
@@ -221,6 +243,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                                 onChanged: (bool? value) {
                                   setState(() {
                                     isSundayChecked = value;
+                                    scheduleViewModel.updateDays(isSundayChecked!, "Sunday");
+                                    vm.refreshSchedules();
                                   });
                                 },
                               ),
@@ -251,7 +275,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
             child: ListView.builder(
               itemCount: taskCount,
               itemBuilder: (context, index) {
-                notifyListeners();
+                
                 // taskViewModel.refreshTasks();
                 if (index == taskCount - 1) {
                   debugPrint("taskCount == $taskCount");
@@ -263,7 +287,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView>
                     },
                   );
                 }
-                notifyListeners();
+                
                 final task = scheduleViewModel.scheduleModel.tasks![index];
                 TaskViewModel(task).refreshTask();
                 return SingleTaskWidget(

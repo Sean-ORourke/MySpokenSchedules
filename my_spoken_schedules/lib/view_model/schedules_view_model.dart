@@ -26,11 +26,9 @@ class ScheduleViewModel extends ChangeNotifier {
   }
 
   void removeTask(int taskId) {
-
     debugPrint("Removing task with ID: $taskId");
 
     for (int i = 0; i < (scheduleModel.tasks?.length ?? 0); i++) {
-
       debugPrint("$taskId == ${scheduleModel.tasks?[i].id}?");
 
       if (taskId == scheduleModel.tasks?[i].id) {
@@ -44,13 +42,30 @@ class ScheduleViewModel extends ChangeNotifier {
   }
 
   updateLabel(String newLabel) {
-    debugPrint("Updating Schedule Label... ${scheduleModel.id}, ${scheduleModel.label}");
+    debugPrint(
+        "Updating Schedule Label... ${scheduleModel.id}, ${scheduleModel.label}");
     scheduleModel.label = newLabel;
     notifyListeners();
   }
 
+  updateDays(bool isDayChecked, String newDay) {
+    debugPrint(
+        "Updating Schedule Days... ${scheduleModel.id}, ${scheduleModel.days}");
+    if (isDayChecked) {
+      scheduleModel.days!.add(newDay);
+      scheduleModel.tasks?.forEach((task) => task.days!.add(newDay));
+      
+      // debugPrint("Updating Task Days... ${scheduleModel.tasks?[1].days!.toString()}");
+    } else {
+      scheduleModel.days!.removeWhere((day) => day == newDay);
+      scheduleModel.tasks?.forEach((task) => task.days!.removeWhere((day) => day == newDay));
+    }
+    notifyListeners();
+  }
+
   updateIsActive(bool newIsActive) {
-    debugPrint("Updating Schedule isActive... ${scheduleModel.id}, ${scheduleModel.isActive}");
+    debugPrint(
+        "Updating Schedule isActive... ${scheduleModel.id}, ${scheduleModel.isActive}");
     scheduleModel.isActive = newIsActive;
     notifyListeners();
   }

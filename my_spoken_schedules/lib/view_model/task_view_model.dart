@@ -15,7 +15,7 @@ class TaskViewModel extends ChangeNotifier {
   }
 
   updateDays(List<String> newDays) {
-    debugPrint("Updating task Label... ${taskModel?.id}, ${taskModel?.days}");
+    debugPrint("Updating task Days... ${taskModel?.id}, ${taskModel?.days}");
     taskModel?.days = newDays;
     notifyListeners();
   }
