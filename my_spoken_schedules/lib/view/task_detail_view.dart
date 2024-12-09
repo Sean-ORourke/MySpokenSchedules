@@ -37,70 +37,6 @@ class _TaskDetailViewState extends State<TaskDetailView> {
     messageController = TextEditingController(text: widget.taskViewModel!.taskModel?.message);
   }
 
-/*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.taskLabel),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: labelController,
-              decoration: InputDecoration(labelText: 'Task Label'),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: messageController,
-              decoration: InputDecoration(labelText: 'Task Message'),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () async {
-                // Show the time picker dialog
-                TimeOfDay? pickedTime = await showTimePicker(
-                  context: context,
-                  initialTime: selectedTime ?? TimeOfDay.now(),
-                  builder: (context, child) {
-                    return MediaQuery(
-                      data: MediaQuery.of(context)
-                          .copyWith(alwaysUse24HourFormat: false),
-                      child: child!,
-                    );
-                  },
-                );
-
-                // Update the selected time if the user picked a time
-                if (pickedTime != null) {
-                  setState(() {
-                    selectedTime = pickedTime;
-                  });
-                }
-              },
-              child: Text(
-                selectedTime == null
-                    ? 'Select Time' // Default button text
-                    : selectedTime!.format(context), // Show selected time
-              ),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                DateTime scheduledDate = DateTime(2024, 12, 7, 23, 59, 59);//.now().add(const Duration(seconds: 5));
-                NotificationService.scheduleNotification("Scheduled Notification", "This notification is scheduled", scheduledDate);
-              },
-              child: Text('Set notification'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
 
@@ -128,11 +64,11 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                 children: [
                   TextFormField(
                       controller: labelController,
-                      decoration: InputDecoration(labelText: 'Task Label'),
+                      decoration: const InputDecoration(labelText: 'Task Label'),
                       onSaved: (String? labelText) {
                         debugPrint(
                             "Value for field labelController saved as ${labelController.text}");
-                        widget.taskViewModel!.updateTask(labelController.text, messageController.text);
+                        widget.taskViewModel!.updateLabel(labelController.text);
                         scheduleViewModel.refreshTasks();
                         setState(() {
                           titleText = Text(labelController.text);
@@ -140,18 +76,18 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                         
 
                       }),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   TextFormField(
                       controller: messageController,
-                      decoration: InputDecoration(labelText: 'Task Message'),
+                      decoration: const InputDecoration(labelText: 'Task Message'),
                       onSaved: (String? labelText) {
                         debugPrint(
                             "Value for field messageController saved as ${messageController.text}");
-                            widget.taskViewModel!.updateTask(labelController.text, messageController.text);
+                            widget.taskViewModel!.updateMessage(messageController.text);
                             titleText = Text(widget.taskViewModel!.taskModel?.label ?? "task");
                             scheduleViewModel.refreshTasks();
                       }),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () async {
                       // Show the time picker dialog
@@ -180,7 +116,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                           : selectedTime!.format(context), // Show selected time
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   
                   ElevatedButton(
                     onPressed: () {
@@ -188,11 +124,11 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                       int id = 0;
                       int timeHour = 23;
                       int timeMinute = 50;
-                      DateTime scheduledDate = DateTime(now.year, now.month, now.day, timeHour, timeMinute);
+                      DateTime scheduledDate = DateTime.now().add(const Duration(seconds: 5));//DateTime(now.year, now.month, now.day, timeHour, timeMinute);
                       //DateTime scheduledDate = DateTime(2024, 12, 7, 23, 59, 59);// DateTime.now().add(const Duration(seconds: 5));
                       NotificationService.scheduleNotification(id, labelController.text, messageController.text, scheduledDate);
                     },
-                    child: Text('Set notification'),
+                    child: const Text('Set notification'),
                   ),
                   // ElevatedButton(
                   //   onPressed: () {

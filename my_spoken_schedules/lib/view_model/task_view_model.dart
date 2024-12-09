@@ -6,11 +6,20 @@ class TaskViewModel extends ChangeNotifier {
 
   TaskViewModel(this.taskModel);
 
-  updateTask(String newLabel, String newMessage) {
+  updateLabel(String newLabel) {
     debugPrint("Updating task Label... ${taskModel?.id}, ${taskModel?.label}");
     taskModel?.label = newLabel;
+    notifyListeners();
+  }
+
+  updateMessage(String newMessage) {
+    debugPrint("Updating task message... ${taskModel?.id}, ${taskModel?.message}");
     taskModel?.message = newMessage;
     notifyListeners();
+  }
+
+  updateTime() {
+    debugPrint("Updating task time... ${taskModel?.id}, ${taskModel?.time}");
   }
 
   refreshTasks() {
