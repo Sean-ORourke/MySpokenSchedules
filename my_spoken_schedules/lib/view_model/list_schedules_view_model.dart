@@ -100,7 +100,7 @@ class ListSchedulesViewModel extends ChangeNotifier {
     final newSchedule = ScheduleModel(
       id: newestScheduleID,
       label: "New Schedule",
-      days: ["Monday"],
+      days: ["Monday", "Tuesday"],
       tasks: [],
       isActive: true,
       latestID: 0
