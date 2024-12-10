@@ -132,8 +132,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                           int timeMinute = 50;
                           DateTime scheduledDate = DateTime.now().add(
                               const Duration(
-                                  seconds:
-                                      5)); //DateTime(now.year, now.month, now.day, timeHour, timeMinute);
+                                  seconds: 5)); //DateTime(now.year, now.month, now.day, timeHour, timeMinute);
                           //DateTime scheduledDate = DateTime(2024, 12, 7, 23, 59, 59);// DateTime.now().add(const Duration(seconds: 5));
                           NotificationService.scheduleNotification(
                               id,
