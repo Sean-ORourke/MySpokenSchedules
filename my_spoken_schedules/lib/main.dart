@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:my_spoken_schedules/view_model/list_schedules_view_model.dart';
 import 'package:my_spoken_schedules/view/list_schedules_view.dart';
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:flutter_tts/flutter_tts.dart';
 
 
 void main() async{
