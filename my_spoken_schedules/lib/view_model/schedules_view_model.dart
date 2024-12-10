@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/model/task_model.dart';
 import 'package:my_spoken_schedules/view_model/task_view_model.dart';
+import 'package:my_spoken_schedules/notification/notification.dart';
 
 class ScheduleViewModel extends ChangeNotifier {
   final ScheduleModel scheduleModel;
@@ -33,6 +34,7 @@ class ScheduleViewModel extends ChangeNotifier {
 
       if (taskId == scheduleModel.tasks?[i].id) {
         debugPrint("YES, $taskId == ${scheduleModel.tasks?[i].id}");
+        NotificationService.cancelNotification(taskId);
         scheduleModel.tasks?.removeAt(i);
         break;
       }
@@ -53,7 +55,7 @@ class ScheduleViewModel extends ChangeNotifier {
         "Updating Schedule Days... ${scheduleModel.id}, ${scheduleModel.days}");
     if (isDayChecked) {
       scheduleModel.days!.add(newDay);
-      scheduleModel.tasks?.forEach((task) => task.days!.add(newDay));
+      scheduleModel.tasks?.forEach((task) => task.days?.add(newDay));
       
       // debugPrint("Updating Task Days... ${scheduleModel.tasks?[1].days!.toString()}");
     } else {
@@ -68,6 +70,13 @@ class ScheduleViewModel extends ChangeNotifier {
         "Updating Schedule isActive... ${scheduleModel.id}, ${scheduleModel.isActive}");
     scheduleModel.isActive = newIsActive;
     notifyListeners();
+  }
+
+  updateNotifs(){
+    debugPrint("updateNotifSchedules");
+    for (int i = 0; i < (scheduleModel.tasks?.length ?? 0); i++) {
+      NotificationService.initNotification(scheduleModel.tasks?[i] as TaskModel, scheduleModel);
+    }
   }
 
   refreshTasks() {

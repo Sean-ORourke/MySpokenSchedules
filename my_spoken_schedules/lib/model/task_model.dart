@@ -8,7 +8,7 @@ class TaskModel {
   TimeOfDay? time;
   String? message;
 
-  TaskModel({required this.id, this.label, List<String>? days, this.time, this.message});
+  TaskModel({required this.id, this.label, List<String>? this.days, this.time, this.message});
 
   TaskModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -18,4 +18,6 @@ class TaskModel {
     message = json['message'];
     debugPrint("hello");
   }
+    
 }
+
