@@ -105,6 +105,7 @@ class ListSchedulesViewModel extends ChangeNotifier {
       isActive: true,
       latestID: 0
     );
+    // debugPrint(newSchedule.days.toString());
     schedules.add(ScheduleViewModel(newSchedule));
     notifyListeners();
   }

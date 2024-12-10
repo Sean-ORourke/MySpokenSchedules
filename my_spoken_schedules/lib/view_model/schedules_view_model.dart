@@ -13,6 +13,7 @@ class ScheduleViewModel extends ChangeNotifier {
     debugPrint("Adding task...");
     scheduleModel.latestID++;
     debugPrint("Task ${scheduleModel.latestID}");
+    // debugPrint(newTask.days.toString());
     final newTask = TaskModel(
       id: scheduleModel.latestID,
       label: "New Task",
@@ -20,6 +21,7 @@ class ScheduleViewModel extends ChangeNotifier {
       time: TimeOfDay.now(),
       message: "New task message",
     );
+    debugPrint(newTask.days.toString());
     scheduleModel.tasks?.add(newTask);
     notifyListeners();
     debugPrint("Task added. Total tasks: ${scheduleModel.tasks?.length}");
@@ -53,12 +55,27 @@ class ScheduleViewModel extends ChangeNotifier {
         "Updating Schedule Days... ${scheduleModel.id}, ${scheduleModel.days}");
     if (isDayChecked) {
       scheduleModel.days!.add(newDay);
-      scheduleModel.tasks?.forEach((task) => task.days!.add(newDay));
+      // notifyListeners();
+      // if (scheduleModel.tasks != null) {
+      //   debugPrint(scheduleModel.tasks.toString());
+      //   debugPrint(scheduleModel.tasks!.isNotEmpty.toString());
+      //   if (scheduleModel.tasks!.isNotEmpty) {
+        scheduleModel.tasks?.forEach((task) => task.days?.add(newDay));
+      //   }
+      // }
       
       // debugPrint("Updating Task Days... ${scheduleModel.tasks?[1].days!.toString()}");
     } else {
       scheduleModel.days!.removeWhere((day) => day == newDay);
-      scheduleModel.tasks?.forEach((task) => task.days!.removeWhere((day) => day == newDay));
+      // notifyListeners();
+      // if (scheduleModel.tasks != null) {
+        // debugPrint(scheduleModel.tasks.toString());
+        // debugPrint(scheduleModel.tasks!.isNotEmpty.toString());
+        // if (scheduleModel.tasks!.isNotEmpty) {
+        //   debugPrint(scheduleModel.tasks?[0].days.toString());
+          scheduleModel.tasks?.forEach((task) => task.days?.removeWhere((day) => day == newDay));
+        // }
+      // }
     }
     notifyListeners();
   }
