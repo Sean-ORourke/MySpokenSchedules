@@ -1,130 +1,125 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
 
-
-
 class ListSchedulesViewModel extends ChangeNotifier {
-  List<SchedulesViewModel> schedules = <SchedulesViewModel>[];
+  List<ScheduleViewModel> schedules = <ScheduleViewModel>[];
+  int newestScheduleID = 2;
 
- fetchSchedules() {
-  // Simulate fetching schedules from a data source
-  final List<Map<String, dynamic>> json = [
-    {
-      "id": "1",
-      "label": "MWF Schedule",
-      "days": ["Monday", "Wednesday", "Friday"],
-      "tasks": [
-        {"id": "1", "label": "Task 1", "time": "8:00 AM", "message": "Morning meeting"},
-        {"id": "2", "label": "Task 2", "time": "12:00 PM", "message": "Lunch with team"},
-      ],
-      "isActive": true,
-    },
-    {
-      "id": "2",
-      "label": "Weekend Schedule",
-      "days": ["Saturday", "Sunday"],
-      "tasks": [
-        {"id": "1", "label": "Task 1", "time": "10:00 AM", "message": "Grocery shopping"},
-        {"id": "2", "label": "Task 2", "time": "3:00 PM", "message": "Watch a movie"},
-      ],
-      "isActive": true,
-    }
-  ];
+  fetchSchedules() {
+    // Simulate fetching schedules from a data source
+    final List<Map<String, dynamic>> json = [
+      {
+        "id": 1,
+        "label": "MWF Schedule",
+        "days": ["Monday", "Wednesday", "Friday"],
+        "tasks": [
+          {
+            "id": 1,
+            "label": "Task 1",
+            "days": ["Monday", "Wednesday", "Friday"],
+            "time": const TimeOfDay(hour: 8, minute: 0),
+            "message": "Morning meeting"
+          },
+          {
+            "id": 2,
+            "label": "Task 2",
+            "days": ["Monday", "Wednesday", "Friday"],
+            "time": const TimeOfDay(hour: 12, minute: 0),
+            "message": "Lunch with team"
+          },
+        ],
+        "isActive": true,
+        "latestID": 2
+      },
+      {
+        "id": 2,
+        "label": "Weekend Schedule",
+        "days": ["Saturday", "Sunday"],
+        "tasks": [
+          {
+            "id": 1,
+            "label": "Wake Up",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 8, minute: 0),
+            "message": "Class is in 1 hour."
+          },
+          {
+            "id": 2,
+            "label": "shop",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 10, minute: 0),
+            "message": "Grocery shopping"
+          },
+          {
+            "id": 3,
+            "label": "movie time!",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 15, minute: 0),
+            "message": "Watch a movie"
+          },
+          {
+            "id": 4,
+            "label": "Workout",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 17, minute: 30),
+            "message": "Workout Plan: Run, bike, lift weights."
+          },
+          {
+            "id": 5,
+            "label": "take Meds",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 18, minute: 45),
+            "message": "ibuprofein, excedrin migrane, multivitamin",
+          },
+          {
+            "id": 6,
+            "label": "time for skincare routine",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 19, minute: 0),
+            "message": "sugar scrub, hydrophillic acid, and face lotion",
+          }
+        ],
+        "isActive": true,
+        "latestID": 6
+      }
+    ];
 
-  // Use type-safe parsing
-  final List<schedule_model> scheduleList = json.map((e) => schedule_model.fromJson(e)).toList();
+    // Use type-safe parsing
+    final List<ScheduleModel> scheduleList =
+        json.map((e) => ScheduleModel.fromJson(e)).toList();
 
-  this.schedules = scheduleList.map((schedule) => SchedulesViewModel(schedule)).toList();
-  notifyListeners();
-}
-
-
-  
-  // fetchSchedules() {
-  //   // Simulate fetching schedules from a data source
-  //   final List<dynamic> json = [
-  //     {
-  //       "id": "1",
-  //       "label": "MWF Schedule",
-  //       "days": ["Monday", "Wednesday", "Friday"],
-  //       "tasks": [],
-  //       "isActive": true,
-  //     },
-  //     {
-  //       "id": "2",
-  //       "label": "Weekend Schedule",
-  //       "days": ["Saturday", "Sunday"],
-  //       "tasks": [],
-  //       "isActive": true,
-  //     }
-  //   ];
-
-  //   final scheduleList = json.map((e) => schedule_model.fromJson(e)).toList();
-  //   this.schedules = scheduleList.map((schedule) => SchedulesViewModel(schedule)).toList();
-  //   notifyListeners();
-  // }
+    schedules =
+        scheduleList.map((schedule) => ScheduleViewModel(schedule)).toList();
+    notifyListeners();
+  }
 
   addSchedule() {
-    final newSchedule = schedule_model(
-      id: DateTime.now().toString(),
+    newestScheduleID++;
+    final newSchedule = ScheduleModel(
+      id: newestScheduleID,
       label: "New Schedule",
-      days: [],
+      days: ["Monday", "Tuesday"],
       tasks: [],
       isActive: true,
+      latestID: 0
     );
+    // debugPrint(newSchedule.days.toString());
+    schedules.add(ScheduleViewModel(newSchedule));
+    notifyListeners();
+  }
 
-    schedules.add(SchedulesViewModel(newSchedule));
+  removeSchedule(int id) {
+    debugPrint("deleting schedule $id");
+    schedules.removeWhere((schedule) => schedule.scheduleModel.id == id);
+    // schedules.where((schedule) => id == id);
+    // ScheduleViewModel schedule = schedules.firstWhere((schedule) => schedule.scheduleModel.id == id);
+    // schedule.refreshTasks();
+    notifyListeners();
+  }
+
+  refreshSchedules(){
     notifyListeners();
   }
 }
-
-
-
-
-
-// import 'dart:convert';
-
-// import 'package:flutter/cupertino.dart';
-// import 'package:my_spoken_schedules/model/task_model.dart';
-// import 'package:my_spoken_schedules/model/schedule_model.dart';
-
-// import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
-// import 'package:my_spoken_schedules/view_model/tasks_view_model.dart';
-// import 'package:provider/provider.dart';
-
-// class ListSchedulesViewModel extends ChangeNotifier {
-//   List<SchedulesViewModel> schedules = <SchedulesViewModel>[];
-
-//   fetchSchedules() {
-
-//     //this.id, this.label, this.days, this.tasks, this.isActive
-
-//     final List<dynamic> json = [
-//       {
-//         "label": "MWF Schedule",
-//         "days": ["Monday", "Wednesday", "Friday"],
-//         "tasks": task_model,
-//         "isActive": true,
-//       },
-//       {
-//         "label": "TuesdayNewsDay",
-//         "days": ["Tuesday"],
-//         "tasks": task_model,
-//         "isActive": true,
-//       }
-//     ];
-
-//     // Parse JSON into TaskModel objects
-//     final scheduleList = json
-//         .map((e) => task_model(label: e["label"], message: e["message"]))
-//         .toList();
-
-//     // Map TaskModel to TasksViewModel
-//     this.schedules = scheduleList.map((schedule) => SchedulesViewModel(schedule)).toList();
-
-//     // all I have to do is fill this.tasks with a List<TasksViewModel>
-
-//     notifyListeners();
-//   }
-// }

@@ -1,15 +1,21 @@
-class task_model {
-  String? id;
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class TaskModel {
+  late int id;
   String? label;
-  String? time;
+  List<String>? days;
+  TimeOfDay? time;
   String? message;
 
-  task_model({this.id, this.label, this.time, this.message});
+  TaskModel({required this.id, this.label, List<String>? days, this.time, this.message});
 
-  task_model.fromJson(Map<String, dynamic> json) {
+  TaskModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     label = json['label'];
+    days = List<String>.from(json['days'] ?? []);
     time = json['time'];
     message = json['message'];
+    debugPrint("hello");
   }
 }

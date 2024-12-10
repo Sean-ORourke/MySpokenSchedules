@@ -1,47 +1,24 @@
 import 'package:my_spoken_schedules/model/task_model.dart';
 
-class schedule_model {
-  String? id;
+class ScheduleModel {
+  int id;
   String? label;
   List<String>? days;
-  List<task_model>? tasks;
+  List<TaskModel>? tasks;
   bool? isActive;
+  int latestID;
 
-  schedule_model({this.id, this.label, this.days, List<task_model>? tasks, this.isActive})
+  ScheduleModel(
+      {required this.id, this.label, this.days, List<TaskModel>? tasks, this.isActive, required this.latestID})
       : tasks = tasks ?? []; // Initialize tasks as an empty list
 
-  schedule_model.fromJson(Map<String, dynamic> json)
+  ScheduleModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         label = json['label'],
         days = List<String>.from(json['days'] ?? []),
         tasks = (json['tasks'] as List<dynamic>?)
-            ?.map((taskJson) => task_model.fromJson(taskJson))
+            ?.map((taskJson) => TaskModel.fromJson(taskJson))
             .toList(),
-        isActive = json['isActive'];
+        isActive = json['isActive'],
+        latestID = json["latestID"];
 }
-
-
-
-
-
-
-
-// import 'package:my_spoken_schedules/model/task_model.dart';
-
-// class schedule_model {
-//   String? id;
-//   String? label;
-//   List<String>? days;
-//   List<task_model>? tasks;
-//   bool? isActive;
-
-//   schedule_model({this.id, this.label, this.days, this.tasks, this.isActive});
-
-//   schedule_model.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     label = json['label'];
-//     days = json['days'];
-//     tasks = json['tasks'];
-//     isActive = json['isActive'];
-//   }
-// }
