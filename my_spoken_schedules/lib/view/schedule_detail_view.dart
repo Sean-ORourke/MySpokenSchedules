@@ -91,7 +91,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Shortcuts(
                 shortcuts: const <ShortcutActivator, Intent>{
@@ -123,14 +123,14 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 titleText = Text(labelController.text);
                               });
                             }),
-                        const SizedBox(height: 16.0),
+                        const SizedBox(height: 10.0),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           clipBehavior: Clip.antiAlias,
                           child: 
                           Row(
                             children: [
-                              const Text("Monday"),
+                              const Text("M"),
                               Checkbox(
                                 // title: const Text("Monday"),
                                 // checkboxSemanticLabel: "Monday",
@@ -146,8 +146,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                   });
                                 },
                               ),
-                              const SizedBox(width: 16.0),
-                              const Text("Tuesday"),
+                              const SizedBox(width: 10.0),
+                              const Text("Tu"),
                               Checkbox(
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
@@ -163,8 +163,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                   });
                                 },
                               ),
-                              const SizedBox(width: 16.0),
-                              const Text("Wednesday"),
+                              const SizedBox(width: 10.0),
+                              const Text("W"),
                               Checkbox(
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
@@ -180,8 +180,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                   });
                                 },
                               ),
-                              const SizedBox(width: 16.0),
-                              const Text("Thursday"),
+                              const SizedBox(width: 10.0),
+                              const Text("Th"),
                               Checkbox(
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
@@ -197,8 +197,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                   });
                                 },
                               ),
-                              const SizedBox(width: 16.0),
-                              const Text("Friday"),
+                              const SizedBox(width: 10.0),
+                              const Text("F"),
                               Checkbox(
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
@@ -214,8 +214,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                   });
                                 },
                               ),
-                              const SizedBox(width: 16.0),
-                              const Text("Saturday"),
+                              const SizedBox(width: 10.0),
+                              const Text("Sa"),
                               Checkbox(
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
@@ -231,8 +231,8 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                   });
                                 },
                               ),
-                              const SizedBox(width: 16.0),
-                              const Text("Sunday"),
+                              const SizedBox(width: 10.0),
+                              const Text("Su"),
                               Checkbox(
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
@@ -252,7 +252,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                           ),
                         ),
 
-                        // const SizedBox(height: 16.0),
+                        // const SizedBox(height: 10.0),
                         // TextFormField(
                         //     controller: messageController,
                         //     decoration: const InputDecoration(labelText: 'Task Message'),
@@ -263,7 +263,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                         //           titleText = Text(widget.taskViewModel!.taskModel?.label ?? "task");
                         //           scheduleViewModel.refreshTasks();
                         //     }),
-                        // const SizedBox(height: 16.0)
+                        // const SizedBox(height: 10.0)
                       ],
                     ),
                   ),
