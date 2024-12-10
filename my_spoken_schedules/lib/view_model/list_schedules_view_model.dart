@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
 
@@ -17,13 +18,15 @@ class ListSchedulesViewModel extends ChangeNotifier {
           {
             "id": 1,
             "label": "Task 1",
-            "time": "8:00 AM",
+            "days": ["Monday", "Wednesday", "Friday"],
+            "time": const TimeOfDay(hour: 8, minute: 0),
             "message": "Morning meeting"
           },
           {
             "id": 2,
             "label": "Task 2",
-            "time": "12:00 PM",
+            "days": ["Monday", "Wednesday", "Friday"],
+            "time": const TimeOfDay(hour: 12, minute: 0),
             "message": "Lunch with team"
           },
         ],
@@ -38,37 +41,43 @@ class ListSchedulesViewModel extends ChangeNotifier {
           {
             "id": 1,
             "label": "Wake Up",
-            "time": "8:00 AM",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 8, minute: 0),
             "message": "Class is in 1 hour."
           },
           {
             "id": 2,
             "label": "shop",
-            "time": "10:00 AM",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 10, minute: 0),
             "message": "Grocery shopping"
           },
           {
             "id": 3,
             "label": "movie time!",
-            "time": "3:00 PM",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 15, minute: 0),
             "message": "Watch a movie"
           },
           {
             "id": 4,
             "label": "Workout",
-            "time": "5:00 PM",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 17, minute: 30),
             "message": "Workout Plan: Run, bike, lift weights."
           },
           {
             "id": 5,
             "label": "take Meds",
-            "time": "8:00 PM",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 18, minute: 45),
             "message": "ibuprofein, excedrin migrane, multivitamin",
           },
           {
             "id": 6,
             "label": "time for skincare routine",
-            "time": "10:00 PM",
+            "days": ["Saturday", "Sunday"],
+            "time": const TimeOfDay(hour: 19, minute: 0),
             "message": "sugar scrub, hydrophillic acid, and face lotion",
           }
         ],
@@ -91,12 +100,26 @@ class ListSchedulesViewModel extends ChangeNotifier {
     final newSchedule = ScheduleModel(
       id: newestScheduleID,
       label: "New Schedule",
-      days: [],
+      days: ["Monday", "Tuesday"],
       tasks: [],
       isActive: true,
       latestID: 0
     );
+    // debugPrint(newSchedule.days.toString());
     schedules.add(ScheduleViewModel(newSchedule));
+    notifyListeners();
+  }
+
+  removeSchedule(int id) {
+    debugPrint("deleting schedule $id");
+    schedules.removeWhere((schedule) => schedule.scheduleModel.id == id);
+    // schedules.where((schedule) => id == id);
+    // ScheduleViewModel schedule = schedules.firstWhere((schedule) => schedule.scheduleModel.id == id);
+    // schedule.refreshTasks();
+    notifyListeners();
+  }
+
+  refreshSchedules(){
     notifyListeners();
   }
 }
