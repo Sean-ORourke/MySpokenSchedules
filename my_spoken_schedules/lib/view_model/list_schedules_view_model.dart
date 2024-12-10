@@ -120,6 +120,13 @@ class ListSchedulesViewModel extends ChangeNotifier {
 
   removeSchedule(int id) {
     debugPrint("deleting schedule $id");
+    for (var schedule in schedules) {
+      if (schedule.scheduleModel.id == id) {
+        for (int i = 0; i < (schedule.scheduleModel.tasks?.length ?? 0); i++) {
+          NotificationService.cancelNotification(schedule.scheduleModel.tasks?[i] as TaskModel, schedule.scheduleModel);
+        }
+      }
+    }
     schedules.removeWhere((schedule) => schedule.scheduleModel.id == id);
     // schedules.where((schedule) => id == id);
     // ScheduleViewModel schedule = schedules.firstWhere((schedule) => schedule.scheduleModel.id == id);

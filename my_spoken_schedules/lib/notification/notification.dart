@@ -78,7 +78,7 @@ class NotificationService{
     }
 
     if (isActiveToday) {
-      NotificationService.cancelNotification(task.id);
+      NotificationService.cancelNotification(task, schedule);
       NotificationService.scheduleNotification(
         (schedule.id*1000)+task.id,
         task.label as String,
@@ -88,8 +88,8 @@ class NotificationService{
     }
   }
 
-  static Future<void> cancelNotification(int id) async {
+  static Future<void> cancelNotification(TaskModel task, ScheduleModel schedule) async {
     debugPrint("Notif Canceled");
-    await flutterLocalNotificationsPlugin.cancel(id);
+    await flutterLocalNotificationsPlugin.cancel((schedule.id*1000)+task.id);
   }
 }

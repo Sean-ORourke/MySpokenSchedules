@@ -22,6 +22,7 @@ class ScheduleViewModel extends ChangeNotifier {
       message: "New task message",
     );
     scheduleModel.tasks?.add(newTask);
+    NotificationService.initNotification(newTask, scheduleModel);
     notifyListeners();
     debugPrint("Task added. Total tasks: ${scheduleModel.tasks?.length}");
   }
@@ -34,7 +35,7 @@ class ScheduleViewModel extends ChangeNotifier {
 
       if (taskId == scheduleModel.tasks?[i].id) {
         debugPrint("YES, $taskId == ${scheduleModel.tasks?[i].id}");
-        NotificationService.cancelNotification(taskId);
+        NotificationService.cancelNotification(scheduleModel.tasks?[i] as TaskModel, scheduleModel);
         scheduleModel.tasks?.removeAt(i);
         break;
       }
@@ -62,6 +63,9 @@ class ScheduleViewModel extends ChangeNotifier {
       scheduleModel.days!.removeWhere((day) => day == newDay);
       scheduleModel.tasks?.forEach((task) => task.days!.removeWhere((day) => day == newDay));
     }
+    for (int i = 0; i < (scheduleModel.tasks?.length ?? 0); i++) {
+      NotificationService.initNotification(scheduleModel.tasks?[i] as TaskModel, scheduleModel);
+    }
     notifyListeners();
   }
 
@@ -69,6 +73,11 @@ class ScheduleViewModel extends ChangeNotifier {
     debugPrint(
         "Updating Schedule isActive... ${scheduleModel.id}, ${scheduleModel.isActive}");
     scheduleModel.isActive = newIsActive;
+    if (!newIsActive) {
+      for (int i = 0; i < (scheduleModel.tasks?.length ?? 0); i++) {
+        NotificationService.cancelNotification(scheduleModel.tasks?[i] as TaskModel, scheduleModel);
+      }
+    }
     notifyListeners();
   }
 
