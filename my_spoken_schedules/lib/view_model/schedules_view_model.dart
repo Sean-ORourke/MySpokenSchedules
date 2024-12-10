@@ -17,7 +17,7 @@ class ScheduleViewModel extends ChangeNotifier {
     final newTask = TaskModel(
       id: scheduleModel.latestID,
       label: "New Task 💡",
-      days: this.scheduleModel.days,
+      days: scheduleModel.days,
       time: TimeOfDay.now(),
       message: "New task message",
     );
