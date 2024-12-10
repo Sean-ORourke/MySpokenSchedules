@@ -18,6 +18,4 @@ class TaskModel {
     message = json['message'];
     debugPrint("hello");
   }
-    
 }
-

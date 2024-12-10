@@ -14,22 +14,22 @@ class ListSchedulesViewModel extends ChangeNotifier {
     final List<Map<String, dynamic>> json = [
       {
         "id": 1,
-        "label": "MWF Schedule",
+        "label": "WFH Days Work Schedule 🖥️",
         "days": ["Monday", "Wednesday", "Friday"],
         "tasks": [
           {
             "id": 1,
-            "label": "Task 1",
+            "label": "Morning meeting 🧍‍♀️🧍‍♀️🧍‍♀️",
             "days": ["Monday", "Wednesday", "Friday"],
             "time": const TimeOfDay(hour: 8, minute: 0),
-            "message": "Morning meeting"
+            "message": "Meeting in 10 minutes. Remember to bring the coffee and sprint reports!"
           },
           {
             "id": 2,
-            "label": "Task 2",
+            "label": "Lunch with team 🥪",
             "days": ["Monday", "Wednesday", "Friday"],
             "time": const TimeOfDay(hour: 12, minute: 0),
-            "message": "Lunch with team"
+            "message": "It is now 12PM. Break for lunch."
           },
         ],
         "isActive": true,
@@ -37,47 +37,47 @@ class ListSchedulesViewModel extends ChangeNotifier {
       },
       {
         "id": 2,
-        "label": "Weekend Schedule",
+        "label": "Weekend Schedule 🎉",
         "days": ["Saturday", "Sunday"],
         "tasks": [
           {
             "id": 1,
-            "label": "Wake Up",
+            "label": "Wake Up 🌤️",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 8, minute: 0),
             "message": "Class is in 1 hour."
           },
           {
             "id": 2,
-            "label": "shop",
+            "label": "shop 🛍️",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 10, minute: 0),
             "message": "Grocery shopping"
           },
           {
             "id": 3,
-            "label": "movie time!",
+            "label": "movie time! 🍿",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 15, minute: 0),
             "message": "Watch a movie"
           },
           {
             "id": 4,
-            "label": "Workout",
+            "label": "Workout 💪",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 17, minute: 30),
             "message": "Workout Plan: Run, bike, lift weights."
           },
           {
             "id": 5,
-            "label": "take Meds",
+            "label": "take Meds 💊",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 18, minute: 45),
             "message": "ibuprofein, excedrin migrane, multivitamin",
           },
           {
             "id": 6,
-            "label": "time for skincare routine",
+            "label": "time for skincare routine 🫧",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 19, minute: 0),
             "message": "sugar scrub, hydrophillic acid, and face lotion",
@@ -108,12 +108,13 @@ class ListSchedulesViewModel extends ChangeNotifier {
     newestScheduleID++;
     final newSchedule = ScheduleModel(
       id: newestScheduleID,
-      label: "New Schedule",
-      days: ["Monday", "Tuesday"],
+      label: "New Schedule ✍️",
+      days: [],
       tasks: [],
       isActive: true,
       latestID: 0
     );
+    // debugPrint(newSchedule.days.toString());
     schedules.add(ScheduleViewModel(newSchedule));
     notifyListeners();
   }

@@ -1,10 +1,30 @@
+
 import 'package:flutter/cupertino.dart';
+
+import 'dart:io';
+
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:my_spoken_schedules/model/task_model.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter_tts/flutter_tts.dart';
 
 class NotificationService{
+
+  static Future<void> speakTaskMessage(String message) async {
+    final FlutterTts flutterTts = FlutterTts();
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setPitch(1.0);
+    await flutterTts.setVolume(0.8);
+    await flutterTts.speak(message);
+  }
+
+  static Future<void> onAlarmFired(String taskMessage) async {
+    await Future.delayed(Duration(seconds: 8));
+    speakTaskMessage(taskMessage); 
+  }
+  
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   static Future<void> onDidReceiveNotificationResponse(NotificationResponse notificationResponse) async {}
@@ -34,6 +54,7 @@ class NotificationService{
          )
     );
     await flutterLocalNotificationsPlugin.show(0, title, body, platformChannelSpecifics);
+    await onAlarmFired(body);
   }
 
   static Future<void> scheduleNotification(int id, String title, String body, DateTime scheduledDate) async{
@@ -55,6 +76,8 @@ class NotificationService{
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.dateAndTime
     );
+    await onAlarmFired(body);
+
     debugPrint("Notif Created");
   }
 
@@ -91,5 +114,6 @@ class NotificationService{
   static Future<void> cancelNotification(TaskModel task, ScheduleModel schedule) async {
     debugPrint("Notif Canceled");
     await flutterLocalNotificationsPlugin.cancel((schedule.id*1000)+task.id);
+
   }
 }

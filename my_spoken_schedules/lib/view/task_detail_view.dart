@@ -127,7 +127,6 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                   .format(context), // Show selected time
                         ),
                       ),
-                      
                   ],
                 ),
               ),
