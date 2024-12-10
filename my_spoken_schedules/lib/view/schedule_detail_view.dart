@@ -284,6 +284,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                     trailing: const Icon(Icons.add),
                     onTap: () {
                       scheduleViewModel.addTask();
+                      scheduleViewModel.updateNotifs();
                     },
                   );
                 }
