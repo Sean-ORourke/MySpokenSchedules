@@ -56,28 +56,75 @@ class ScheduleViewModel extends ChangeNotifier {
   updateDays(bool isDayChecked, String newDay) {
     debugPrint(
         "Updating Schedule Days... ${scheduleModel.id}, ${scheduleModel.days}");
+
+        
+        
+
     if (isDayChecked) {
-      scheduleModel.days!.add(newDay);
 
-      scheduleModel.tasks?.forEach((task) => task.days?.add(newDay));
+      // is this day already in the list?
+      bool repeat = (scheduleModel.days?.contains(newDay) ?? false);
+      if (!repeat) {
+        scheduleModel.days!.add(newDay);
+      }
 
+      List<String>? oldDays = scheduleModel.days;
+
+        // remove days
+        scheduleModel.days = [];
+
+        bool hasMonday = false;
+        if(oldDays?.contains("Monday") ?? false || newDay == "Monday") {
+          scheduleModel.days!.add("Monday");
+          hasMonday = true;
+        }
+
+        bool hasTuesday = false;
+        if(oldDays?.contains("Tuesday") ?? false || newDay == "Tuesday") {
+          scheduleModel.days!.add("Tuesday");
+          hasTuesday = true;
+        }
+
+        bool hasWednesday = false;
+        if(oldDays?.contains("Wednesday") ?? false || newDay == "Wednesday") {
+          scheduleModel.days!.add("Wednesday");
+          hasWednesday = true;
+        }
+
+        bool hasThursday = false;
+        if(oldDays?.contains("Thursday") ?? false || newDay == "Thursday") {
+          scheduleModel.days!.add("Thursday");
+          hasThursday = true;
+        }
+
+        bool hasFriday = false;
+        if(oldDays?.contains("Friday") ?? false || newDay == "Friday") {
+          scheduleModel.days!.add("Friday");
+          hasFriday = true;
+        }
+
+        bool hasSaturday = false;
+        if(oldDays?.contains("Saturday") ?? false || newDay == "Saturday") {
+          scheduleModel.days!.add("Saturday");
+          hasSaturday = true;
+        }
+
+        bool hasSunday = false;
+        if(oldDays?.contains("Sunday") ?? false || newDay == "Sunday") {
+          scheduleModel.days!.add("Sunday");
+          hasSunday = true;
+        }
       
-      // debugPrint("Updating Task Days... ${scheduleModel.tasks?[1].days!.toString()}");
+        scheduleModel.tasks?.forEach((task) => task.days?.add(newDay));
+
     } else {
       scheduleModel.days!.removeWhere((day) => day == newDay);
-      // notifyListeners();
-      // if (scheduleModel.tasks != null) {
-        // debugPrint(scheduleModel.tasks.toString());
-        // debugPrint(scheduleModel.tasks!.isNotEmpty.toString());
-        // if (scheduleModel.tasks!.isNotEmpty) {
-        //   debugPrint(scheduleModel.tasks?[0].days.toString());
+
           scheduleModel.tasks?.forEach((task) => task.days?.removeWhere((day) => day == newDay));
-        // }
-      // }
+
     }
-    for (int i = 0; i < (scheduleModel.tasks?.length ?? 0); i++) {
-      NotificationService.initNotification(scheduleModel.tasks?[i] as TaskModel, scheduleModel);
-    }
+    debugPrint(
+        "Updated Schedule Days... ${scheduleModel.id}, ${scheduleModel.days}");
     notifyListeners();
   }
 
