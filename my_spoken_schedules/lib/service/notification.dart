@@ -46,6 +46,16 @@ class NotificationService {
         ?.requestNotificationsPermission();
   }
 
+/*
+
+
+
+Notif stored below V
+
+
+
+*/
+// NOTIF STORED!!!
   static Future<void> showInstantNotification(String title, String body) async {
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
         android: AndroidNotificationDetails(
@@ -53,8 +63,8 @@ class NotificationService {
       "channelName",
       importance: Importance.high,
       priority: Priority.high,
-      playSound: true,
-      sound: RawResourceAndroidNotificationSound('guitar'),
+      playSound: true, 
+      sound: RawResourceAndroidNotificationSound('guitar'), // <----- where sound file is put
     ));
     await flutterLocalNotificationsPlugin.show(
         0, title, body, platformChannelSpecifics);

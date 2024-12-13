@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/model/task_model.dart';
 import 'package:my_spoken_schedules/view_model/task_view_model.dart';
-import 'package:my_spoken_schedules/notification/notification.dart';
+import 'package:my_spoken_schedules/service/notification.dart';
 
 class ScheduleViewModel extends ChangeNotifier {
   final ScheduleModel scheduleModel;
