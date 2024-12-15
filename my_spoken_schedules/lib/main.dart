@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_spoken_schedules/notification/notification.dart';
+import 'package:my_spoken_schedules/service/notification.dart';
 import 'package:provider/provider.dart';
 import 'package:my_spoken_schedules/view_model/list_schedules_view_model.dart';
 import 'package:my_spoken_schedules/view/list_schedules_view.dart';

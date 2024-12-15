@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
+import 'package:my_spoken_schedules/service/notification.dart';
+import 'package:my_spoken_schedules/model/task_model.dart';
 
 class ListSchedulesViewModel extends ChangeNotifier {
   List<ScheduleViewModel> schedules = <ScheduleViewModel>[];
@@ -12,22 +14,22 @@ class ListSchedulesViewModel extends ChangeNotifier {
     final List<Map<String, dynamic>> json = [
       {
         "id": 1,
-        "label": "MWF Schedule",
+        "label": "WFH Days Work Schedule 🖥️",
         "days": ["Monday", "Wednesday", "Friday"],
         "tasks": [
           {
             "id": 1,
-            "label": "Task 1",
+            "label": "Morning meeting 🧍‍♀️🧍‍♀️🧍‍♀️",
             "days": ["Monday", "Wednesday", "Friday"],
             "time": const TimeOfDay(hour: 8, minute: 0),
-            "message": "Morning meeting"
+            "message": "Meeting in 10 minutes. Remember to bring the coffee and sprint reports!"
           },
           {
             "id": 2,
-            "label": "Task 2",
+            "label": "Lunch with team 🥪",
             "days": ["Monday", "Wednesday", "Friday"],
             "time": const TimeOfDay(hour: 12, minute: 0),
-            "message": "Lunch with team"
+            "message": "It is now 12PM. Break for lunch."
           },
         ],
         "isActive": true,
@@ -35,47 +37,47 @@ class ListSchedulesViewModel extends ChangeNotifier {
       },
       {
         "id": 2,
-        "label": "Weekend Schedule",
+        "label": "Weekend Schedule 🎉",
         "days": ["Saturday", "Sunday"],
         "tasks": [
           {
             "id": 1,
-            "label": "Wake Up",
+            "label": "Wake Up 🌤️",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 8, minute: 0),
             "message": "Class is in 1 hour."
           },
           {
             "id": 2,
-            "label": "shop",
+            "label": "shop 🛍️",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 10, minute: 0),
             "message": "Grocery shopping"
           },
           {
             "id": 3,
-            "label": "movie time!",
+            "label": "movie time! 🍿",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 15, minute: 0),
             "message": "Watch a movie"
           },
           {
             "id": 4,
-            "label": "Workout",
+            "label": "Workout 💪",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 17, minute: 30),
             "message": "Workout Plan: Run, bike, lift weights."
           },
           {
             "id": 5,
-            "label": "take Meds",
+            "label": "take Meds 💊",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 18, minute: 45),
             "message": "ibuprofein, excedrin migrane, multivitamin",
           },
           {
             "id": 6,
-            "label": "time for skincare routine",
+            "label": "time for skincare routine 🫧",
             "days": ["Saturday", "Sunday"],
             "time": const TimeOfDay(hour: 19, minute: 0),
             "message": "sugar scrub, hydrophillic acid, and face lotion",
@@ -92,6 +94,13 @@ class ListSchedulesViewModel extends ChangeNotifier {
 
     schedules =
         scheduleList.map((schedule) => ScheduleViewModel(schedule)).toList();
+    
+    for (var schedule in schedules) {
+      for (int i = 0; i < (schedule.scheduleModel.tasks?.length ?? 0); i++) {
+        NotificationService.initNotification(schedule.scheduleModel.tasks?[i] as TaskModel, schedule.scheduleModel);
+      }
+    }
+
     notifyListeners();
   }
 
@@ -99,8 +108,8 @@ class ListSchedulesViewModel extends ChangeNotifier {
     newestScheduleID++;
     final newSchedule = ScheduleModel(
       id: newestScheduleID,
-      label: "New Schedule",
-      days: ["Monday", "Tuesday"],
+      label: "New Schedule ✍️",
+      days: [],
       tasks: [],
       isActive: true,
       latestID: 0
@@ -112,6 +121,13 @@ class ListSchedulesViewModel extends ChangeNotifier {
 
   removeSchedule(int id) {
     debugPrint("deleting schedule $id");
+    for (var schedule in schedules) {
+      if (schedule.scheduleModel.id == id) {
+        for (int i = 0; i < (schedule.scheduleModel.tasks?.length ?? 0); i++) {
+          NotificationService.cancelNotification(schedule.scheduleModel.tasks?[i] as TaskModel, schedule.scheduleModel);
+        }
+      }
+    }
     schedules.removeWhere((schedule) => schedule.scheduleModel.id == id);
     // schedules.where((schedule) => id == id);
     // ScheduleViewModel schedule = schedules.firstWhere((schedule) => schedule.scheduleModel.id == id);
