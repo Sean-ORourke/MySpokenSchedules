@@ -33,3 +33,6 @@ doc/api/
 **/GeneratedPluginRegistrant.swift
 my_spoken_schedules/macos/Flutter/GeneratedPluginRegistrant.swift
 my_spoken_schedules/macos/Flutter/GeneratedPluginRegistrant.swift
+my_spoken_schedules/macos/Flutter/GeneratedPluginRegistrant.swift
+my_spoken_schedules/windows/flutter/generated_plugin_registrant.cc
+my_spoken_schedules/windows/flutter/generated_plugins.cmake

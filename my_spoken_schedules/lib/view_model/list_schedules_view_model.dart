@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_spoken_schedules/model/schedule_model.dart';
 import 'package:my_spoken_schedules/view_model/schedules_view_model.dart';
-import 'package:my_spoken_schedules/notification/notification.dart';
+import 'package:my_spoken_schedules/service/notification.dart';
 import 'package:my_spoken_schedules/model/task_model.dart';
 
 class ListSchedulesViewModel extends ChangeNotifier {
