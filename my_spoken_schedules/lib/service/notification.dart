@@ -74,8 +74,16 @@ Notif stored below V
   static Future<void> scheduleNotification(
       int id, String title, String body, DateTime scheduledDate) async {
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
-        android: AndroidNotificationDetails("channelId", "channelName",
-            importance: Importance.high, priority: Priority.high));
+        android: AndroidNotificationDetails(
+          "channelId", 
+          "channelName",
+          importance: Importance.high, 
+          priority: Priority.high, 
+          playSound: true, 
+        sound: RawResourceAndroidNotificationSound('guitar')
+      )
+    );
+
     await flutterLocalNotificationsPlugin.zonedSchedule(id, title, body,
         tz.TZDateTime.from(scheduledDate, tz.local), platformChannelSpecifics,
         uiLocalNotificationDateInterpretation:
