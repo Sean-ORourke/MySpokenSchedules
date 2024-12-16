@@ -44,7 +44,7 @@ class SingleTaskWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
-              icon: const Icon(Icons.mode_edit),
+              icon: const Icon(Icons.mode_edit, color: Colors.deepOrange),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -69,7 +69,7 @@ class SingleTaskWidget extends StatelessWidget {
             ),
             const SizedBox(width: 8.0), // Space between buttons
             IconButton(
-              icon: const Icon(Icons.delete_forever),
+              icon: const Icon(Icons.delete_forever, color: Colors.deepOrange),
               onPressed: () {
                 final taskId = taskViewModel.taskModel?.id;
                 if (taskId != null) {

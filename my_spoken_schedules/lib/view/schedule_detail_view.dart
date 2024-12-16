@@ -141,6 +141,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 // title: const Text("Monday"),
                                 // checkboxSemanticLabel: "Monday",
                                 shape: const CircleBorder(),
+                                activeColor: Colors.deepOrange,
                                 visualDensity: visualDensity,
                                 tristate: false,
                                 value: isMondayChecked,
@@ -159,6 +160,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
                                 shape: const CircleBorder(),
+                                activeColor: Colors.deepOrange,
                                 visualDensity: visualDensity,
                                 tristate: false,
                                 value: isTuesdayChecked,
@@ -177,6 +179,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
                                 shape: const CircleBorder(),
+                                activeColor: Colors.deepOrange,
                                 visualDensity: visualDensity,
                                 tristate: false,
                                 value: isWednesdayChecked,
@@ -195,6 +198,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
                                 shape: const CircleBorder(),
+                                activeColor: Colors.deepOrange,
                                 visualDensity: visualDensity,
                                 tristate: false,
                                 value: isThursdayChecked,
@@ -213,6 +217,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
                                 shape: const CircleBorder(),
+                                activeColor: Colors.deepOrange,
                                 visualDensity: visualDensity,
                                 tristate: false,
                                 value: isFridayChecked,
@@ -231,6 +236,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
                                 shape: const CircleBorder(),
+                                activeColor: Colors.deepOrange,
                                 visualDensity: visualDensity,
                                 tristate: false,
                                 value: isSaturdayChecked,
@@ -249,6 +255,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                                 // title: const Text("Tuesday"),
                                 // checkboxSemanticLabel: "Tuesday",
                                 shape: const CircleBorder(),
+                                activeColor: Colors.deepOrange,
                                 visualDensity: visualDensity,
                                 tristate: false,
                                 value: isSundayChecked,
@@ -291,14 +298,16 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                 // taskViewModel.refreshTasks();
                 if (index == taskCount - 1) {
                   debugPrint("taskCount == $taskCount");
-                  return ListTile(
+                  return Card( 
+      margin: const EdgeInsets.all(8.0),
+      child: ListTile(
                     title: const Text('Add New Task'),
-                    trailing: const Icon(Icons.add),
+                    trailing: const Icon(Icons.add, color: Colors.deepOrange),
                     onTap: () {
                       scheduleViewModel.addTask();
                       scheduleViewModel.updateNotifs();
                     },
-                  );
+                  ));
                 }
 
                 final task = scheduleViewModel.scheduleModel.tasks![index];

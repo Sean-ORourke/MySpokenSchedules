@@ -32,16 +32,31 @@ class _ScheduleListViewState extends State<ScheduleListView> {
         itemCount: vm.schedules.length + 1,
         itemBuilder: (context, index) {
           if (index == vm.schedules.length) {
-            return ListTile(
+            return Card( 
+      margin: const EdgeInsets.all(8.0),
+      child: ListTile(
               title: const Text('Add New Schedule'),
-              trailing: const Icon(Icons.add),
+              trailing: const Icon(Icons.add, color: Colors.deepOrange),
               onTap: () {
                 vm.addSchedule();
               },
-            );
+            ));
           }
           final scheduleViewModel = vm.schedules[index];
-          return ListTile(
+          return Card( 
+      margin: const EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: Transform.scale(
+                        scale: 0.7,
+                        child: CupertinoSwitch(
+                  value: scheduleViewModel.scheduleModel?.isActive ?? false, 
+                  activeTrackColor: Colors.deepOrange,
+                  onChanged: (bool? value) {
+                    scheduleViewModel.updateIsActive(value!);
+                    vm.refreshSchedules();
+                  }
+                  ),
+        ),
             title: Text(
                 scheduleViewModel.scheduleModel?.label ?? 'Unnamed Schedule'),
             subtitle: Text(
@@ -50,15 +65,25 @@ class _ScheduleListViewState extends State<ScheduleListView> {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CupertinoSwitch(
-                  value: scheduleViewModel.scheduleModel?.isActive ?? false, 
-                  onChanged: (bool? value) {
-                    scheduleViewModel.updateIsActive(value!);
-                    vm.refreshSchedules();
-                  }
-                  ),
                 IconButton(
-                  icon: const Icon(Icons.delete_forever),
+              icon: const Icon(Icons.mode_edit, color: Colors.deepOrange),
+              onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChangeNotifierProvider.value(
+                    value:
+                        scheduleViewModel, // Pass the existing SchedulesViewModel instance
+                    child: ScheduleDetailView(
+                        vm: vm, scheduleViewModel: scheduleViewModel),
+                  ),
+                ),
+              );
+            },
+              ),
+                
+                IconButton(
+                  icon: const Icon(Icons.delete_forever, color: Colors.deepOrange),
                   onPressed: () {
                     final scheduleId = scheduleViewModel.scheduleModel.id;
                     if (scheduleId != null) {
@@ -72,22 +97,11 @@ class _ScheduleListViewState extends State<ScheduleListView> {
                     }
                   },
                 ),
+                
               ],
             ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider.value(
-                    value:
-                        scheduleViewModel, // Pass the existing SchedulesViewModel instance
-                    child: ScheduleDetailView(
-                        vm: vm, scheduleViewModel: scheduleViewModel),
-                  ),
-                ),
-              );
-            },
-          );
+            
+          ));
         },
       ),
     );
