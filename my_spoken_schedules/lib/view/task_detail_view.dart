@@ -126,6 +126,8 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                   "Select Time" // Default button text
                               : selectedTime!
                                   .format(context), // Show selected time
+                                  selectionColor: Colors.deepOrange,
+                                  style: const TextStyle(color: Colors.deepOrange),
                         ),
                       ),
                       /*ElevatedButton(
