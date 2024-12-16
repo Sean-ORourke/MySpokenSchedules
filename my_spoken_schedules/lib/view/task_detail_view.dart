@@ -127,6 +127,12 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                   .format(context), // Show selected time
                         ),
                       ),
+                      ElevatedButton(
+                        onPressed: () {
+                          NotificationService.onAlarmFired(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
+                        },
+                        child: Text('Set Spoken Notification'),
+                      ),
                   ],
                 ),
               ),

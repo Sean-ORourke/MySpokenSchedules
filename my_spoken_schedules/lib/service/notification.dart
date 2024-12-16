@@ -17,9 +17,38 @@ class NotificationService {
     await flutterTts.speak(message);
   }
 
-  static Future<void> onAlarmFired(String taskMessage) async {
-    await Future.delayed(Duration(seconds: 5));
-    speakTaskMessage(taskMessage);
+  static Future<void> onAlarmFired(TaskModel task, ScheduleModel schedule) async {
+    DateTime now = DateTime.now();
+    DateTime scheduledTime = DateTime(now.year, now.month, now.day, task.time?.hour as int, task.time?.minute as int);
+    int differenceInSeconds = scheduledTime.difference(now).inSeconds;
+
+    bool isActiveToday = false;
+
+    int today = now.weekday;
+    if (task.days != null) {
+      for (var day in (task.days as List<String>)) {
+        if ((today == 1 && day == "Monday") ||
+            (today == 2 && day == "Tuesday") ||
+            (today == 3 && day == "Wednesday") ||
+            (today == 4 && day == "Thursday") ||
+            (today == 5 && day == "Friday") ||
+            (today == 6 && day == "Saturday") ||
+            (today == 7 && day == "Sunday")) {
+          isActiveToday = true;
+        }
+      }
+    } else {
+      debugPrint("DAYS IS NULL");
+    }
+    
+    if (isActiveToday && differenceInSeconds>0) {
+      debugPrint("speak in ${differenceInSeconds}");
+      await Future.delayed(Duration(seconds: differenceInSeconds + 4));
+      speakTaskMessage(task.message as String);
+    } else {
+      debugPrint("NOT SCHEDULED LATER TODAY");
+    }
+    
   }
 
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -68,18 +97,17 @@ Notif stored below V
     ));
     await flutterLocalNotificationsPlugin.show(
         0, title, body, platformChannelSpecifics);
-    await onAlarmFired(body);
   }
 
   static Future<void> scheduleNotification(
       int id, String title, String body, DateTime scheduledDate) async {
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
         android: AndroidNotificationDetails(
-          "channelId", 
-          "channelName",
-          importance: Importance.high, 
-          priority: Priority.high, 
-          playSound: true, 
+        "channelId", 
+        "channelName",
+        importance: Importance.high, 
+        priority: Priority.high, 
+        playSound: true, 
         sound: RawResourceAndroidNotificationSound('guitar')
       )
     );
@@ -90,7 +118,6 @@ Notif stored below V
             UILocalNotificationDateInterpretation.absoluteTime,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         matchDateTimeComponents: DateTimeComponents.dateAndTime);
-    await onAlarmFired(body);
 
     debugPrint("Notif Created");
   }
