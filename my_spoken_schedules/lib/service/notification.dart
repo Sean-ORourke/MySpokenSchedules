@@ -13,7 +13,7 @@ class NotificationService {
     final FlutterTts flutterTts = FlutterTts();
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1.0);
-    await flutterTts.setVolume(0.8);
+    await flutterTts.setVolume(1.0);
     await flutterTts.speak(message);
   }
 

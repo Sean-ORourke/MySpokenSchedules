@@ -114,6 +114,7 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                               selectedTime = pickedTime;
                               widget.taskViewModel!.updateTime(pickedTime);
                               NotificationService.initNotification(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
+                              NotificationService.onAlarmFired(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
                               scheduleViewModel.refreshTasks();
                             });
                           }
@@ -127,12 +128,12 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                   .format(context), // Show selected time
                         ),
                       ),
-                      ElevatedButton(
+                      /*ElevatedButton(
                         onPressed: () {
                           NotificationService.onAlarmFired(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
                         },
                         child: Text('Set Spoken Notification'),
-                      ),
+                      ),*/
                   ],
                 ),
               ),
