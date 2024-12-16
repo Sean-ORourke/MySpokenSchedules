@@ -92,6 +92,9 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
     taskCount++;
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.deepOrange, //change your color here
+        ),
         title:
             Text(scheduleViewModel.scheduleModel.label ?? 'Schedule Details'),
       ),
@@ -298,16 +301,17 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
                 // taskViewModel.refreshTasks();
                 if (index == taskCount - 1) {
                   debugPrint("taskCount == $taskCount");
-                  return Card( 
-      margin: const EdgeInsets.all(8.0),
-      child: ListTile(
-                    title: const Text('Add New Task'),
-                    trailing: const Icon(Icons.add, color: Colors.deepOrange),
-                    onTap: () {
-                      scheduleViewModel.addTask();
-                      scheduleViewModel.updateNotifs();
-                    },
-                  ));
+                  return Card(
+                      margin: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        title: const Text('Add New Task'),
+                        trailing:
+                            const Icon(Icons.add, color: Colors.deepOrange),
+                        onTap: () {
+                          scheduleViewModel.addTask();
+                          scheduleViewModel.updateNotifs();
+                        },
+                      ));
                 }
 
                 final task = scheduleViewModel.scheduleModel.tasks![index];
