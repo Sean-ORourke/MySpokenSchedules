@@ -26,68 +26,85 @@ class _ScheduleListViewState extends State<ScheduleListView> {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+color: Colors.deepOrange, //change your color here
+),
         title: const Text('Schedules'),
       ),
       body: ListView.builder(
         itemCount: vm.schedules.length + 1,
         itemBuilder: (context, index) {
           if (index == vm.schedules.length) {
-            return ListTile(
-              title: const Text('Add New Schedule'),
-              trailing: const Icon(Icons.add),
-              onTap: () {
-                vm.addSchedule();
-              },
-            );
+            return Card(
+                margin: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: const Text('Add New Schedule'),
+                  trailing: const Icon(Icons.add, color: Colors.deepOrange),
+                  onTap: () {
+                    vm.addSchedule();
+                  },
+                ));
           }
           final scheduleViewModel = vm.schedules[index];
-          return ListTile(
-            title: Text(
-                scheduleViewModel.scheduleModel?.label ?? 'Unnamed Schedule'),
-            subtitle: Text(
-              (scheduleViewModel.scheduleModel?.days ?? []).join(', '),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CupertinoSwitch(
-                  value: scheduleViewModel.scheduleModel?.isActive ?? false, 
-                  onChanged: (bool? value) {
-                    scheduleViewModel.updateIsActive(value!);
-                    vm.refreshSchedules();
-                  }
-                  ),
-                IconButton(
-                  icon: const Icon(Icons.delete_forever),
-                  onPressed: () {
-                    final scheduleId = scheduleViewModel.scheduleModel.id;
-                    if (scheduleId != null) {
-                      vm.removeSchedule(scheduleId);
-                      // taskViewModel.refreshTasks();
-                      // notifyListeners();
-                    } else {
-                      debugPrint("Schedule ID is null. Cannot remove task.");
-                      // taskViewModel.refreshTasks();
-                      // notifyListeners();
-                    }
-                  },
+          return Card(
+              margin: const EdgeInsets.all(8.0),
+              child: ListTile(
+                contentPadding: const EdgeInsets.all(1.0),
+                leading: Transform.scale(
+                  scale: 0.7,
+                  child: CupertinoSwitch(
+                      value: scheduleViewModel.scheduleModel?.isActive ?? false,
+                      activeTrackColor: Colors.deepOrange,
+                      onChanged: (bool? value) {
+                        scheduleViewModel.updateIsActive(value!);
+                        vm.refreshSchedules();
+                      }),
                 ),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider.value(
-                    value:
-                        scheduleViewModel, // Pass the existing SchedulesViewModel instance
-                    child: ScheduleDetailView(
-                        vm: vm, scheduleViewModel: scheduleViewModel),
-                  ),
+                title: Text(scheduleViewModel.scheduleModel?.label ??
+                    'Unnamed Schedule'),
+                subtitle: Text(
+                  (scheduleViewModel.scheduleModel?.days ?? []).join(', '),
                 ),
-              );
-            },
-          );
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon:
+                          const Icon(Icons.mode_edit, color: Colors.deepOrange),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider.value(
+                              value:
+                                  scheduleViewModel, // Pass the existing SchedulesViewModel instance
+                              child: ScheduleDetailView(
+                                  vm: vm, scheduleViewModel: scheduleViewModel),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete_forever,
+                          color: Colors.deepOrange),
+                      onPressed: () {
+                        final scheduleId = scheduleViewModel.scheduleModel.id;
+                        if (scheduleId != null) {
+                          vm.removeSchedule(scheduleId);
+                          // taskViewModel.refreshTasks();
+                          // notifyListeners();
+                        } else {
+                          debugPrint(
+                              "Schedule ID is null. Cannot remove task.");
+                          // taskViewModel.refreshTasks();
+                          // notifyListeners();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ));
         },
       ),
     );

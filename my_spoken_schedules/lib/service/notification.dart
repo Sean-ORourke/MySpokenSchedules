@@ -93,7 +93,7 @@ Notif stored below V
       importance: Importance.high,
       priority: Priority.high,
       playSound: true, 
-      sound: RawResourceAndroidNotificationSound('guitar'), // <----- where sound file is put
+      sound: RawResourceAndroidNotificationSound('ringtone'), 
     ));
     await flutterLocalNotificationsPlugin.show(
         0, title, body, platformChannelSpecifics);
@@ -108,7 +108,7 @@ Notif stored below V
         importance: Importance.high, 
         priority: Priority.high, 
         playSound: true, 
-        sound: RawResourceAndroidNotificationSound('guitar')
+        sound: RawResourceAndroidNotificationSound('ringtone') // <----- where sound file is put
       )
     );
 

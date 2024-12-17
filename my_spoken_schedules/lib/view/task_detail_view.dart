@@ -42,6 +42,9 @@ class _TaskDetailViewState extends State<TaskDetailView> {
         Text(widget.taskViewModel!.taskModel?.label ?? "Unnamed Task");
     return Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: Colors.deepOrange, //change your color here
+          ),
           title: titleText,
         ),
         body: Padding(
@@ -70,7 +73,9 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                 "Value for field labelController saved as ${labelController.text}");
                             widget.taskViewModel!
                                 .updateLabel(labelController.text);
-                            NotificationService.initNotification(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
+                            NotificationService.initNotification(
+                                widget.taskViewModel!.taskModel as TaskModel,
+                                scheduleViewModel.scheduleModel);
                             scheduleViewModel.refreshTasks();
                             setState(() {
                               titleText = Text(labelController.text);
@@ -86,7 +91,9 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                 "Value for field messageController saved as ${messageController.text}");
                             widget.taskViewModel!
                                 .updateMessage(messageController.text);
-                            NotificationService.initNotification(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
+                            NotificationService.initNotification(
+                                widget.taskViewModel!.taskModel as TaskModel,
+                                scheduleViewModel.scheduleModel);
                             titleText = Text(
                                 widget.taskViewModel!.taskModel?.label ??
                                     "task");
@@ -113,8 +120,12 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                             setState(() {
                               selectedTime = pickedTime;
                               widget.taskViewModel!.updateTime(pickedTime);
-                              NotificationService.initNotification(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
-                              NotificationService.onAlarmFired(widget.taskViewModel!.taskModel as TaskModel, scheduleViewModel.scheduleModel);
+                              NotificationService.initNotification(
+                                  widget.taskViewModel!.taskModel as TaskModel,
+                                  scheduleViewModel.scheduleModel);
+                              NotificationService.onAlarmFired(
+                                  widget.taskViewModel!.taskModel as TaskModel,
+                                  scheduleViewModel.scheduleModel);
                               scheduleViewModel.refreshTasks();
                             });
                           }
@@ -126,6 +137,8 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                                   "Select Time" // Default button text
                               : selectedTime!
                                   .format(context), // Show selected time
+                          selectionColor: Colors.deepOrange,
+                          style: const TextStyle(color: Colors.deepOrange),
                         ),
                       ),
                       /*ElevatedButton(
@@ -134,13 +147,12 @@ class _TaskDetailViewState extends State<TaskDetailView> {
                         },
                         child: Text('Set Spoken Notification'),
                       ),*/
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      )
-    );
+        ));
   }
 }
