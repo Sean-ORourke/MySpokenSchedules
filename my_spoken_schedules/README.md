@@ -1,16 +1,17 @@
 # my_spoken_schedules
 
-A new Flutter project.
+## How to Run:
+Open the zip file.
+Make sure you are in the my_spoken_schedules directory in your terminal.
+Open an android V35 emulator (probably through android studio)
+Now,
+Flutter clean
+Flutter pub get
+Flutter pub upgrade
+Flutter run
 
-## Getting Started
+Click on the flutter icon if the application does not open up in front of you
 
-This project is a starting point for a Flutter application.
+Choose to allow notifications 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Look into the pre-crafted schedules. Then, create and manage your own! Try setting a task for two minutes (or however long you would like it to be for) from now, change the label and message, then do some other fun things in the app, until the notification appears, and the message is read out!

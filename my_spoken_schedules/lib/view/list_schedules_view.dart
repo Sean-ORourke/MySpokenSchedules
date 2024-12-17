@@ -27,8 +27,8 @@ class _ScheduleListViewState extends State<ScheduleListView> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(
-color: Colors.deepOrange, //change your color here
-),
+          color: Colors.deepOrange, //change your color here
+        ),
         title: const Text('Schedules'),
       ),
       body: ListView.builder(
@@ -54,7 +54,7 @@ color: Colors.deepOrange, //change your color here
                   scale: 0.7,
                   child: CupertinoSwitch(
                       value: scheduleViewModel.scheduleModel?.isActive ?? false,
-                      activeTrackColor: Colors.deepOrange,
+                      activeColor: Colors.deepOrange,
                       onChanged: (bool? value) {
                         scheduleViewModel.updateIsActive(value!);
                         vm.refreshSchedules();
