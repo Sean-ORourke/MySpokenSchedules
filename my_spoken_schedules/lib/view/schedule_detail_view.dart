@@ -88,6 +88,7 @@ class _ScheduleDetailViewState extends State<ScheduleDetailView> {
 
     // scheduleViewModel.refreshTasks();
     // taskViewModel.refreshTasks();
+    scheduleViewModel.scheduleModel.sortTasksByTime();
     int taskCount = scheduleViewModel.scheduleModel.tasks?.length ?? 0;
     taskCount++;
     return Scaffold(

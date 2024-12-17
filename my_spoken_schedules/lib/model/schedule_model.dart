@@ -21,4 +21,16 @@ class ScheduleModel {
             .toList(),
         isActive = json['isActive'],
         latestID = json["latestID"];
+  
+   void sortTasksByTime() {
+    if (tasks == null) return;
+
+    // Sort and assign back the sorted list
+    tasks = List.from(tasks!)..sort((a, b) {
+      if (a.time == null || b.time == null) return 0; // Handle null times
+      return a.time!.hour == b.time!.hour
+          ? a.time!.minute.compareTo(b.time!.minute) // Compare minutes if hours are equal
+          : a.time!.hour.compareTo(b.time!.hour); // Compare hours
+    });
+  }
 }
