@@ -2,7 +2,7 @@
 
 ## How to Run:
 
-1. **Open the zip file.**
+1. **Download and unzip this zip file: https://drive.google.com/file/d/17I6G286d7LnyPxdShrC_PxVu1QlJZ3J5/view?usp=sharing**
 2. **Make sure you are in the `my_spoken_schedules` directory in your terminal.**
 3. **Open an Android V35 emulator** (probably through Android Studio).
 4. **Run the following commands:**
